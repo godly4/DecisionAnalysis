@@ -1,0 +1,30 @@
+{
+  "state": true,
+  "message": null,
+  "data": [
+    {
+      "indextext": "地区生产总值",
+      "indexcode": "f074c554-370e-4fb0-9f1d-6dfa1aadde68",
+      "indextype": "number",
+      "indextime": "2014;2013;2012;2011;2010"
+    },
+    {
+      "indextext": "第一产业增加值(亿元)",
+      "indexcode": "fe66b9c6-6032-49b3-adfd-ad40e156cd5f",
+      "indextype": "number",
+      "indextime": "2014;2013;2012;2011;2010"
+    },
+    {
+      "indextext": "第二产业增加值(亿元）",
+      "indexcode": "65116bfe-4f1a-4d57-825e-20fa90550216",
+      "indextype": "number",
+      "indextime": "2014;2013;2012;2011;2010"
+    },
+    {
+      "indextext": "第三产业增加值(亿元）",
+      "indexcode": "0df093e1-03b5-47c7-a861-3f37e70110b4",
+      "indextype": "number",
+      "indextime": "2014;2013;2012;2011;2010"
+    }
+  ]
+}

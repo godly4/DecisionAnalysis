@@ -1,0 +1,1310 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>京津冀科技资源数字地图平台（决策分析）</title>
+    <script type="text/javascript">
+        //var pathUrl = "@pathUrl";
+    </script>
+    <link href="./Scripts/map/ol/ol.css" rel="stylesheet" />
+    <link href="./Scripts/map/ol/iclient9-openlayers.min.css" rel="stylesheet" />
+    <link href="./css/analysis.css" rel="stylesheet" />
+    <link href="./Scripts/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="./Scripts/colors/colorRampPlugin.css" rel="stylesheet" />
+    <link href="./Scripts/bootstrap/bootstrap-colorselector.css" rel="stylesheet" />
+    <link href="./Scripts/bootstrap/font-awesome.min.css" rel="stylesheet" />
+    <link href="./Scripts/colors/colpick.css" rel="stylesheet" />
+    <link href="./css/analysisMicMac.min.css" rel="stylesheet" />
+    <link href="./css/cartogramList.min.css" rel="stylesheet" />
+    <script src="./Scripts/jquery-1.11.2.min.js"></script>
+    <script src="./Scripts/jquery.tmpl.min.js"></script>
+    <script src="./Scripts/laypage/laypage.js"></script>
+    <script src="./Scripts/layer/layer.js"></script>
+    <script src="./Scripts/highcharts/highcharts.js"></script>
+    <script src="./Scripts/highcharts/highcharts-zh_CN.js"></script>
+    <script src="./Scripts/map/baidu/mapv.min.js"></script>
+    <script src="./Scripts/map/ol/ol.js"></script>
+    <script src="./Scripts/map/ol/iclient9-openlayers.min.js"></script>
+    <!--不使用openlayers自带地图
+    <script src="./Scripts/map/ol/analysisDataMap.min.js"></script>-->
+    <script src="./Scripts/backbone/Underscore.js"></script>
+    <script src="./Scripts/backbone/Backbone.js"></script>
+    <script src="./Scripts/colors/colpick.js"></script>
+    <script src="./Scripts/bootstrap/bootstrap-colorselector.js"></script>
+    <script src="./Scripts/colors/colorRampPlugin.js"></script>
+    <script src="./Scripts/colors/rainbowvis.js"></script>
+    <script src="./Scripts/bootstrap/bootstrap.min.js"></script>
+    <script src="./Scripts/bootstrap/bootstrap-treeview.js"></script>
+    <script src="./Scripts/colors/dragula.min.js"></script>
+    <script src="./js/analysisMicMac.min.js"></script>
+    <script src="./js/analysis.js"></script>
+    <script src="./js/cartogramList.min.js"></script>
+    <!--以下为新增的js，做ol3Echarts用-->
+    <script src="./Scripts/hmap.js"></script>
+    <script src="./Scripts/echarts.js"></script>
+    <script src="./Scripts/ol3Echarts.js"></script>
+    <script src="./Scripts/map/ol3Echarts/AnalysisMap.js"></script>
+    <script src="./Scripts/map/js/china.js"></script>
+    <style type="text/css">
+        /*---滚动条默认显示样式--*/
+        ::-webkit-scrollbar-thumb {
+            background-color: #e5e5e5;
+            height: 50px;
+            outline-offset: -2px;
+            outline: 2px solid #fff;
+            -webkit-border-radius: 4px;
+            border: 2px solid #fff;
+        }
+
+        /*---鼠标点击滚动条显示样式--*/
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: #e5e5e5;
+            height: 50px;
+            -webkit-border-radius: 4px;
+        }
+
+        /*---滚动条大小--*/
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        /*---滚动框背景样式--*/
+        ::-webkit-scrollbar-track-piece {
+            background-color: #fff;
+            -webkit-border-radius: 0;
+        }
+    </style>
+
+</head>
+<body>
+    <!--logo -->
+    <div class="logo">
+        <img src="./img/logo.png" />
+    </div>
+    <!-- 窗口 -->
+    <div id="popup" class="ol-popup" style="display: none">
+        <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+        <div id="popup-content"></div>
+    </div>
+    <!--内容 -->
+    <div class="content clearfloat">
+        <!-- 导航-->
+        <div class="tool clearfloat" style="position:relative;">
+            <!-- 工具栏 -->
+            <ul class="toolbar">
+                <li id="data-toolbar" ac="do" class="toolbar-item">
+                    <img src="./img/database.png" />
+                    <span>现状评价</span>
+                </li>
+                <li id="save-toolbar" ac="sd" class="toolbar-item">
+                    <img src="./img/save.png" />
+                    <span>潜力评价</span>
+                </li>
+                <li id="collection-toolbar" ac="cd" class="toolbar-item">
+                    <img src="./img/collection.png" />
+                    <span>协同布局</span>
+                </li>
+            </ul>
+            <!-- 工具栏容器 -->
+            <ul class="tool-panel-container">
+                <!-- 现状评价 -->
+                <li id="data-panel" class="tool-panel" ac="do" style="display:none">
+                    <!-- 工具栏容器头部 -->
+                    <div class="panel-header clearfloat">
+                        <img class="panel-img" src="./img/collection2.png" />
+                        <span>数据</span>
+                        <img class="panel-close" ac="do" src="./img/close.png" />
+                    </div>
+                    <!-- 工具栏容器panel -->
+                    <div class="tool-panel-content scrollbar">
+                        <div style="width: 288px; border: 1px dashed #999;">
+                            <!-- 添加数据 -->
+                            <div class="addDataConDiv" style="display:inline-block;height: 35px; line-height: 35px; text-align: center; width:141px;cursor:pointer;">
+                                <!--<img src="./img/addData.png" alt="添加数据" style="vertical-align:text-bottom;" />-->
+                                <i class="fa fa-file-text"></i>
+                                <span>添加数据</span>
+                            </div>
+                            <!-- 添加统计图 -->
+                            <div class="addCartogramInput disabled" style="display: inline-block; height: 35px; line-height: 35px; text-align: center; width: 141px; cursor: pointer; border-left: 1px dashed #999; ">
+                                <!--<img src="./img/addData.png" alt="添加统计图" style="vertical-align:text-bottom;" />-->
+                                <i class="fa fa-bar-chart"></i>
+                                <span>添加统计图</span>
+                            </div>
+                        </div>
+                        <!-- 数据相关操作页面 ADD 2017-06-30 -->
+                        <ul id="data-layer-list"></ul>
+                    </div>
+                </li>
+                <!-- 潜力评价 -->
+                <li id="save-panel" class="tool-panel" ac="sd" style="display:none">
+                    <!-- 工具栏容器头部 -->
+                    <div class="panel-header clearfloat">
+                        <img class="panel-img" src="./img/collection2.png" />
+                        <span>数据</span>
+                        <img class="panel-close" ac="do" src="./img/close.png" />
+                    </div>
+                    <!-- 工具栏容器panel -->
+                    <div class="tool-panel-content scrollbar form-group">
+                        <label>数据来源</label>
+                        <select id="regressData" class="form-control" onchange="getRegressColumn(this)">
+                            <option value="noselect">---请选择---</option>
+                        </select>
+                        <label>产出类型(Y)</label>
+                        <select id="columnY" class="form-control">
+                            <option value="noselect">---请选择---</option>
+                        </select>
+                        <label>投入类型(X)</label>
+                        <select id="columnX" class="form-control" multiple="multiple">
+                        </select>
+                        <hr/>
+                        <button class="btn btn-success" type="button" style="display: block;float: right;clear: both;margin-top: 20px;" onclick="regress()">计算</button>
+                    </div>
+                </li>
+                <!-- 协同布局 -->
+                <li id="collection-panel" class="tool-panel" ac="cd" style="display:none">
+                    <!-- 工具栏容器头部 -->
+                    <div class="panel-header clearfloat">
+                        <img class="panel-img" src="./img/collection2.png" />
+                        <span>收藏</span>
+                        <img class="panel-close" src="./img/close.png" />
+                    </div>
+                    <!-- 工具栏容器panel -->
+                    <div class="tool-panel-content">
+                        <!-- 搜索区域 -->
+                        <div class="collectSearchConDiv"></div>
+                        <ul class="collect-list-conent"></ul>
+                        <div id="collectListPageDiv"></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!-- 地图工具栏、配置折叠按钮 20171115 -->
+        <div id="folderBtn"><i></i></div>
+        <!-- 统计图列表的折叠 20171117 -->
+        <div id="folderCartogramBtn"><i></i></div>
+        <!-- 统计图列表 -->
+        <div id="cartogramListConDiv" class="hide"></div>
+        <!-- 地图map -->
+        <div class="map" id="map"></div>
+        <!--
+        <div class="map">
+            <div id="allmap">
+                <div style="display: none;" id="chart"></div>
+            </div>
+            <!--时间轴
+            <div id="overShaftDiv">
+                <div id="timeShaftBox" class="timeShaftBox">
+                    <div id="progressTime_control" title="开始"></div>
+                    <div class="progressTime" id="progressTime" style="z-index:9">
+                        <div>
+                            <p id="startTime" style=" float:left;margin-left:33px;opacity: 0;display: none;"></p>
+                            <p id="endTime" style=" float:right;margin-right:33px;opacity: 0;display: none;"></p>
+                        </div>
+                        <div class="time_slot">
+                        </div>
+                        <div id="progressTime_concent">
+                            <div id="scrollBarBox">
+                                <div id="scrollBar">
+                                    <div id="scroll_Track"></div>
+                                    <div id="scroll_Thumb"></div>
+                                </div>
+                            </div>
+                            <div class="timecode"></div>
+                            <div style="width:90%; margin-left: auto;margin-right: auto;">
+                                <div style="width:300px;float:right;margin-right:-110px;margin-top:-8px">
+                                    <p id="TimeSpeed" style="float:left;margin-right:40px;display:none">×1</p>
+                                    <p style="float:right" id="scrollBarTxt"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 统计图添加按钮 -->
+            <!--@*<input type="button" value="添加统计图" id="addCartogramInput" class="hide"/>*@
+            -->
+        </div>
+        <!-- 图例 -->
+        <div class="right-bottom-container">
+            <div id="legend-wrapper" class="hide">
+                <div id="legend-container"></div>
+                <span id="legend-toggle-label">例</span>
+            </div>
+            <div class="copyright hide"></div>
+        </div>
+        <!-- 问题提醒 -->
+        <div id="message-container" class="animated hide">
+            <!--@*<i class="fa fa-check-circle-o fa-fw success"></i>
+            <i class="fa fa-frown-o fa-fw error"></i>*@-->
+            <i class="fa fa-exclamation-triangle fa-fw warning"></i>
+            <span id="message"></span>
+        </div>
+    </div>
+    <!-- 遮罩层-处理数据 -->
+    <div id="loadingPage" style="display: none;">
+        <div class="loading-shade"></div>
+        <div class="loading-content" style="left: 633px; top: 289px;">正在处理数据，请稍后…</div>
+    </div>
+    <!-- 点数据模版 -->
+    <script type="text/template" id="marker-data-layer-template">
+        <li id="<%= dataLayer.cid %>" class="data-layer open layer-show">
+            <div class="layer-title limit-text">
+                <div class="material-switch">
+                    <input id="<%= dataLayer.cid %>-chk-layer-toggle" class="chk-layer-toggle" type="checkbox" checked />
+                    <label for="<%= dataLayer.cid %>-chk-layer-toggle" class="label-default"></label>
+                </div>
+                <div class="title-wrapper">
+                    <span class="limit-text" title="<%= dataLayer.get('dataName') %>"><%= dataLayer.get('dataName') %></span>
+                    <input class="title-editor form-control" type="text" value="<%= dataLayer.get('dataName') %>">
+                </div>
+            </div>
+            <span class="layer-tools pull-right">
+                <i class="btn-toggle-up fa fa-minus" title="最小化"></i>
+                <i class="btn-title-edit fa fa-pencil" title="编辑名称"></i>
+                <i class="btn-layer-up fa fa-arrow-up" title="上移"></i>
+                <i class="btn-layer-down fa fa-arrow-down" title="下移"></i>
+                <!-- <i class="btn-zoom-to fa fa-hand-o-right" title="缩放到数据范围"></i>-->
+                <i id="<%= dataLayer.cid %>" class="btn-remove fa fa-trash-o" title="删除"></i>
+            </span>
+            <div class="data-layer-config-panel" style="background:#fff;">
+                <!--<div class="visible-warning">
+                    <i class="fa fa-warning fa-fw"></i> 该数据在当前比例尺不显示，点击按钮 <i class="fa fa-hand-o-right"></i> 缩放到可显示范围。
+                </div>-->
+                <!-- 类型选择 6个 -->
+                <div class="config-template-list">
+                    <div class="config-template">
+                        <img id="simple-template" class="template-thumb" src="./img/data-tpl-marker-simple.jpg">
+                        <p class="template-name">散点图</p>
+                        <i class="fa fa-check-circle fa-fw"></i>
+                    </div>
+                    <div class="config-template">
+                        <img id="choropleth-template" class="template-thumb" src="./img/data-tpl-marker-choropleth.png">
+                        <p class="template-name">分段图</p>
+                        <i class="fa fa-check-circle fa-fw"></i>
+                    </div>
+                    <div class="config-template">
+                        <img id="bubble-template" class="template-thumb" src="./img/data-tpl-marker-bubble.png">
+                        <p class="template-name">气泡图</p>
+                        <i class="fa fa-check-circle fa-fw"></i>
+                    </div>
+                    <div class="config-template">
+                        <img id="category-template" class="template-thumb" src="./img/data-tpl-marker-category.png">
+                        <p class="template-name">单值图</p>
+                        <i class="fa fa-check-circle fa-fw"></i>
+                    </div>
+                    <div class="config-template">
+                        <img id="heat-template" class="template-thumb" src="./img/data-tpl-marker-heat.jpg">
+                        <p class="template-name">热点图</p>
+                        <i class="fa fa-check-circle fa-fw"></i>
+                    </div>
+                    <div class="config-template">
+                        <img id="intensity-template" class="template-thumb" src="./img/data-tpl-marker-intensity.png">
+                        <p class="template-name">强度线</p>
+                        <i class="fa fa-check-circle fa-fw"></i>
+                    </div>
+                </div>
+                <!-- 散点图 -->
+                <div id="simple-panel" class="config-panel active">
+                    <!--@*<div class="config-item">
+                        <label>选择年份</label>
+                        <select class="number-year-picker year-picker"></select>
+                    </div>*@-->
+                    <div class="config-item">
+                        <label>符号填充</label>
+                        <select class="marker-color-picker color-picker"></select>
+                        <select class="marker-size-picker size-picker"></select>
+                        <select class="marker-opacity-picker opacity-picker"></select>
+                    </div>
+                    <div class="config-item">
+                        <label>符号轮廓</label>
+                        <select class="outline-color-picker color-picker"></select>
+                        <select class="outline-width-picker outline-picker"></select>
+                        <select class="outline-opacity-picker opacity-picker"></select>
+                    </div>
+                    <!--@*<div class="config-item">
+                        <label>渲染模式</label>
+                        <select class="blending-mode-picker" id="simple-marker-blending-mode-picker"></select>
+                    </div>*@-->
+                    <div class="label-config config-item">
+                        <label>文本标注</label>
+                        <select class="label-color-picker color-picker"></select>
+                        <select class="label-field-picker field-picker"></select>
+                    </div>
+                    <div class="label-config config-item second-row">
+                        <select class="label-font-picker"></select>
+                        <select class="label-size-picker"></select>
+                    </div>
+                </div>
+                <!-- 分段图 -->
+                <div id="choropleth-panel" class="config-panel">
+                    <div class="config-item">
+                        <label>选择属性</label>
+                        <select class="number-field-picker field-picker"></select>
+                    </div>
+                    <div class="config-item">
+                        <label>选择年份</label>
+                        <select class="number-year-picker year-picker"></select>
+                    </div>
+                    <div class="config-item">
+                        <label>选择分段</label>
+                        <select class="bucket-type-picker"></select>
+                        <select class="bucket-count-picker"></select>
+                        <span class="btn-config-breaks fa fa-cog fa-fw hide" title="手动分段配置"></span>
+                    </div>
+                    <div class="config-item">
+                        <label>符号填充</label>
+                        <input class="marker-color-ramp-picker color-ramp-picker color-ramp-red" readonly>
+                        <select class="marker-size-picker size-picker"></select>
+                        <select class="marker-opacity-picker opacity-picker"></select>
+                    </div>
+                    <div class="config-item">
+                        <label>符号轮廓</label>
+                        <select class="outline-color-picker color-picker"></select>
+                        <select class="outline-width-picker outline-picker"></select>
+                        <select class="outline-opacity-picker opacity-picker"></select>
+                    </div>
+                    <!--@*<div class="config-item">
+                        <label>渲染模式</label>
+                        <select class="blending-mode-picker" id="choropleth-marker-blending-mode-picker"></select>
+                    </div>*@-->
+                    <div class="label-config config-item">
+                        <label>文本标注</label>
+                        <select class="label-color-picker color-picker"></select>
+                        <select class="label-field-picker field-picker"></select>
+                    </div>
+                    <div class="label-config config-item second-row">
+                        <select class="label-font-picker"></select>
+                        <select class="label-size-picker"></select>
+                    </div>
+                    <div class="config-item warning">
+                        <i class="fa fa-warning fa-fw"></i> 该数据没有数值型字段
+                    </div>
+                </div>
+                <!-- 气泡图 -->
+                <div id="bubble-panel" class="config-panel">
+                    <div class="config-item">
+                        <label>尺寸属性</label>
+                        <select id="bubble-size-field-picker" class="number-field-picker field-picker"></select>
+                        <span class="question" data-toggle="tooltip" title="通过符号尺寸表示的属性"> <i class="fa fa-question-circle"></i></span>
+                    </div>
+                    <div class="config-item">
+                        <label>选择年份</label>
+                        <select id="bubble-size-year-picker" class="number-year-picker year-picker"></select>
+                    </div>
+                    <div class="config-item">
+                        <label>尺寸分段</label>
+                        <select class="bucket-type-picker"></select>
+                        <select class="bucket-count-picker"></select>
+                        <span class="btn-config-breaks fa fa-cog fa-fw hide" title="手动分段配置"></span>
+                        <span class="question" data-toggle="tooltip" title="尺寸属性分段"> <i class="fa fa-question-circle"></i></span>
+                    </div>
+                    <div class="config-item">
+                        <label>符号尺寸</label>
+                        <select class="marker-min-size-picker size-picker"></select> 至
+                        <select class="marker-max-size-picker size-picker"></select>
+                    </div>
+                    <div class="bubble-fill-container">
+                        <div class="config-container">
+                            <label>符号填充</label>
+                            <div class="config-content">
+                                <label>
+                                    <input name="<%= dataLayer.cid %>-radio-fill-mode" type="radio" class="toggle radio-bubble-fill" value="single" checked> 单色填充
+                                </label>
+                                <label>
+                                    <input name="<%= dataLayer.cid %>-radio-fill-mode" type="radio" class="toggle radio-bubble-fill" value="multi"> 多色填充
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="bubble-single-fill-wrapper" class="">
+                        <div class="config-item">
+                            <label>选择颜色</label>
+                            <select class="marker-color-picker color-picker"></select>
+                            <select id="bubble-size-marker-opacity-picker" class="marker-opacity-picker opacity-picker"></select>
+                        </div>
+                    </div>
+                    <div id="bubble-multi-fill-wrapper" class="hide">
+                        <div class="config-item">
+                            <label>颜色属性</label>
+                            <select id="bubble-color-field-picker" class="number-field-picker field-picker"></select>
+                            <span class="question" data-toggle="tooltip" title="通过符号颜色表示的属性"> <i class="fa fa-question-circle"></i></span>
+                        </div>
+                        <!--@*<div class="config-item">
+                            <label>选择年份</label>
+                            <select id="bubble-color-year-picker" class="number-year-picker year-picker"></select>
+                        </div>*@-->
+                        <div class="config-item">
+                            <label>颜色分段</label>
+                            <select id="bubble-color-bucket-type-picker"></select>
+                            <select id="bubble-color-bucket-count-picker"></select>
+                            <span id="btn-bubble-color-config-breaks" class="fa fa-cog fa-fw hide" title="手动分段配置" style="display:none;"></span>
+                            <span class="question" data-toggle="tooltip" title="颜色属性分段"> <i class="fa fa-question-circle"></i></span>
+                        </div>
+                        <div class="config-item">
+                            <label>选择色带</label>
+                            <input class="marker-color-ramp-picker color-ramp-picker color-ramp-red" readonly>
+                            <select id="bubble-color-marker-opacity-picker" class="marker-opacity-picker opacity-picker"></select>
+                        </div>
+                    </div>
+                    <div class="config-item">
+                        <label>符号轮廓</label>
+                        <select class="outline-color-picker color-picker"></select>
+                        <select class="outline-width-picker outline-picker"></select>
+                        <select class="outline-opacity-picker opacity-picker"></select>
+                    </div>
+                    <div class="label-config config-item">
+                        <label>文本标注</label>
+                        <select class="label-color-picker color-picker"></select>
+                        <select class="label-field-picker field-picker"></select>
+                    </div>
+                    <div class="label-config config-item second-row">
+                        <select class="label-font-picker"></select>
+                        <select class="label-size-picker"></select>
+                    </div>
+                    <div class="config-item warning">
+                        <i class="fa fa-warning fa-fw"></i> 该数据没有数值型字段
+                    </div>
+                </div>
+                <!-- 单值图 -->
+                <div id="category-panel" class="config-panel">
+                    <div class="config-item">
+                        <label>选择属性</label>
+                        <select class="category-field-picker field-picker"></select>
+                    </div>
+                    <div class="config-item">
+                        <label>选择年份</label>
+                        <select class="number-year-picker year-picker"></select>
+                    </div>
+                    <div class="config-item">
+                        <label>符号填充</label>
+                        <input class="marker-color-ramp-picker color-ramp-picker color-ramp-spectrumfull" readonly>
+                        <select class="marker-size-picker size-picker"></select>
+                        <select class="marker-opacity-picker opacity-picker"></select>
+                    </div>
+                    <div class="config-item">
+                        <label>符号轮廓</label>
+                        <select class="outline-color-picker color-picker"></select>
+                        <select class="outline-width-picker outline-picker"></select>
+                        <select class="outline-opacity-picker opacity-picker"></select>
+                    </div>
+                    <!--@*<div class="config-item">
+                        <label>渲染模式</label>
+                        <select class="blending-mode-picker" id="category-marker-blending-mode-picker"></select>
+                    </div>*@-->
+                    <div class="label-config config-item">
+                        <label>文本标注</label>
+                        <select class="label-color-picker color-picker"></select>
+                        <select class="label-field-picker field-picker"></select>
+                    </div>
+                    <div class="label-config config-item second-row">
+                        <select class="label-font-picker"></select>
+                        <select class="label-size-picker"></select>
+                    </div>
+                    <div class="config-item bucket-list-container">
+                        <label class="pull-left">颜色设置</label>
+                        <ul class="bucket-list scrollbar" class="config-item"></ul>
+                    </div>
+                    <div class="config-item warning">
+                        <i class="fa fa-warning fa-fw"></i> 该数据没有数值型字段
+                    </div>
+                </div>
+                <!-- 热点图 -->
+                <div id="heat-panel" class="config-panel">
+                    <div class="config-item">
+                        <label>热度权重</label>
+                        <select id="heat-weight-field-picker"></select><span class="question" data-toggle="tooltip" title="根据权重值渲染热点，选无则认为每个点权重均为1。"> <i class="fa fa-question-circle"></i></span>
+                    </div>
+                    <div class="config-item">
+                        <label>选择年份</label>
+                        <select class="number-year-picker year-picker"></select>
+                    </div>
+                    <div class="config-item">
+                        <label>热度上限</label>
+                        <input id="input-heat-top-value" class="form-control numeric" type="text"><span class="question" data-toggle="tooltip" title="当热度权重不存在时，热度上限无效；大于该值的点均被当做最大热度"> <i class="fa fa-question-circle"></i></span>
+                        <!--<span class="question" title="当热度权重不存在时，热度上限无效！大于该值的点均被当做最大热度"><i class="fa fa-exclamation-circle"></i></span>-->
+                    </div>
+                    <div class="config-item">
+                        <label>热点尺寸</label>
+                        <!--@*<select id="heat-unit-picker">
+                            <option value="pixel">像素单位</option>
+                            <option value="map">地理单位</option>
+                        </select>*@-->
+                        <span id="heat-unit-wrapper" class="pixel">
+                            <span id="heat-unit-px-wrapper">
+                                <select id="heat-size-picker"></select> px
+                            </span>
+                            <!--@*<span id="heat-unit-geo-wrapper">
+                                <input id="input-heat-size" class="form-control integer" type="text"> m
+                            </span>*@-->
+                        </span>
+                    </div>
+                    <div class="config-item">
+                        <label>热点颜色</label>
+                        <input id="heat-color-ramp-picker" class="color-ramp-picker color-ramp-heat-blue2red" readonly>
+                    </div>
+                    <div class="config-item">
+                        <label>透明度</label>
+                        <!--@*<select id="min-heat-opacity-picker" class="heat-opacity-picker opacity-picker"></select> 至*@-->
+                        <select id="heat-opacity-picker" class="heat-opacity-picker opacity-picker"></select>
+                    </div>
+                </div>
+                <!-- 强度线 -->
+                <div id="intensity-panel" class="config-panel">
+                    <div class="config-item">
+                        <label>选择属性</label>
+                        <select class="intensity-field-picker field-picker"></select>
+                    </div>
+                    <div class="config-item">
+                        <label>选择年份</label>
+                        <select class="number-year-picker year-picker"></select>
+                    </div>
+                    <div class="config-item">
+                        <label>关联属性</label>
+                        <select class="intensity-corrfield-picker field-picker"></select>
+                    </div>
+                    <div class="config-item">
+                        <label>展示方式</label>
+                        <select class="intensity-displayWay-picker field-picker"></select>
+                    </div>
+                    <div class="lineWayClass wayClass">
+                        <div class="config-item">
+                            <label>关联数量</label>
+                            <select class="intensity-corrcount-picker field-picker"></select>
+                        </div>
+                        <div class="config-item hide">
+                            <label>关联强度</label>
+                            <input id="input-intensity-top-value" class="form-control numeric" type="text" />
+                        </div>
+                        <div class="config-item">
+                            <label>强度颜色</label>
+                            <select class="marker-color-picker color-picker"></select>
+                            <input id="intensity-color-ramp-picker" class="color-ramp-picker color-ramp-heat-blue2red hide" readonly>
+                            <select id="intensity-opacity-picker" class="marker-opacity-picker opacity-picker"></select>
+                        </div>
+                    </div>
+                    <div class="curveWayClass wayClass hide">
+                        <div class="config-item">
+                            <label>强度颜色</label>
+                            <select class="marker-color-curve-picker color-picker"></select>
+                            <select id="intensity-opacity-curve-picker" class="marker-opacity-picker opacity-picker"></select>
+                        </div>
+                    </div>
+                    <div class="config-item">
+                        <label>强度线宽</label>
+                        <select class="lineWidth-width-picker outline-picker"></select>
+                    </div>
+                    <div class="config-container hide">
+                        <label>动态展示</label>
+                        <div class="config-content">
+                            <div class="material-switch">
+                                <input id="<%= dataLayer.cid %>-chk-dynamic-toggle" class="chk-toggle-dynamic" type="checkbox" />
+                                <label for="<%= dataLayer.cid %>-chk-dynamic-toggle" class="label-default"></label>
+                                显示动态展示
+                            </div>
+                        </div>
+                    </div>
+                    <div class="config-container dynamic-setting hide">
+                        <div class="config-item">
+                            <label>动画颜色</label>
+                            <select class="marker-color-dynamic-picker color-picker"></select>
+                            <select id="intensity-opacity-dynamic-picker" class="marker-opacity-picker opacity-picker"></select>
+                        </div>
+                        <div class="config-item">
+                            <label>点大小</label>
+                            <select class="marker-size-dynamic-picker size-picker"></select>
+                        </div>
+                    </div>
+                    <div class="config-item warning">
+                        <i class="fa fa-warning fa-fw"></i> 该数据没有数值型字段
+                    </div>
+                </div>
+                <!-- 图例 -->
+                <div class="legend-setting-wrapper disabled unchecked">
+                    <div class="config-container">
+                        <label>图例设置</label>
+                        <div class="config-content">
+                            <div class="material-switch">
+                                <input id="<%= dataLayer.cid %>-chk-legend-toggle" class="chk-toggle-legend" type="checkbox" />
+                                <label for="<%= dataLayer.cid %>-chk-legend-toggle" class="label-default"></label>
+                                显示图例
+                            </div>
+                        </div>
+                    </div>
+                    <div class="config-container legend-setting">
+                        <label>图例名称</label>
+                        <div class="config-content">
+                            <input id="input-legend-title" type="text" class="form-control" placeholder="图例名称" value="<%= dataLayer.get('dataName') %>">
+                        </div>
+                    </div>
+                    <div class="config-container legend-setting">
+                        <label>图例顺序</label>
+                        <div class="config-content">
+                            <label>
+                                <input name="<%= dataLayer.cid %>-radio-legend-order" type="radio" class="toggle radio-legend-order" value="asc" checked> 正序
+                            </label>
+                            <label>
+                                <input name="<%= dataLayer.cid %>-radio-legend-order" type="radio" class="toggle radio-legend-order" value="desc"> 倒序
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <!-- 过滤条件 -->
+                <div class="filter-container config-container hide">
+                    <label>过滤条件</label>
+                    <div class="config-content">
+                        <input id="input-filter" class="form-control" type="text" placeholder='如: "id">50 and "code"=&apos;A3&apos;'>
+                    </div>
+                </div>
+                <!-- 时态设置 -->
+                <div class="animate-setting-wrapper">
+                    <div class="config-container">
+                        <label>时态设置</label>
+                        <div class="config-content">
+                            <div class="material-switch">
+                                <input id="<%= dataLayer.cid %>-chk-animate-toggle" class="chk-toggle-animate" type="checkbox" />
+                                <label for="<%= dataLayer.cid %>-chk-animate-toggle" class="label-default"></label>
+                                启用时态
+                            </div>
+                        </div>
+                    </div>
+                    <div id="animate-setting" class="config-container hide">
+                        <div class="config-item">
+                            <label>时态字段</label>
+                            <select class="time-field-picker" style="width:130px;"></select>
+                        </div>
+                        <div class="config-item">
+                            <label>时态分段</label>
+                            <select class="time-segment-picker"></select>
+                        </div>
+                        <div class="config-item">
+                            <label>播放间隔</label>
+                            <select class="time-duration-picker"></select> 秒
+                        </div>
+                        <div class="config-item">
+                            <label></label>
+                            <div class="material-switch">
+                                <input id="<%= dataLayer.cid %>-chk-time-accumulate" class="chk-time-accumulate" type="checkbox" />
+                                <label for="<%= dataLayer.cid %>-chk-time-accumulate" class="label-default"></label>
+                                按时段播放
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </script>
+    <!-- 面数据模版 -->
+    <script type="text/template" id="polygon-data-layer-template">
+        <li id="<%= dataLayer.cid %>" class="data-layer open layer-show">
+            <div class="layer-title limit-text">
+                <div class="material-switch">
+                    <input id="<%= dataLayer.cid %>-chk-layer-toggle" class="chk-layer-toggle" type="checkbox" checked />
+                    <label for="<%= dataLayer.cid %>-chk-layer-toggle" class="label-default"></label>
+                </div>
+                <div class="title-wrapper">
+                    <span class="limit-text" title="<%= dataLayer.get('dataName') %>"><%= dataLayer.get('dataName') %></span>
+                    <input class="title-editor form-control" type="text" value="<%= dataLayer.get('dataName') %>">
+                </div>
+            </div>
+            <span class="layer-tools pull-right">
+                <i class="btn-toggle-up fa fa-minus" title="最小化"></i>
+                <i class="btn-title-edit fa fa-pencil" title="编辑名称"></i>
+                <i class="btn-layer-up fa fa-arrow-up" title="上移"></i>
+                <i class="btn-layer-down fa fa-arrow-down" title="下移"></i>
+                <!--<i class="btn-zoom-to fa fa-hand-o-right" title="缩放到数据范围"></i>-->
+                <i id="<%= dataLayer.cid %>" class="btn-remove fa fa-trash-o" title="删除"></i>
+            </span>
+            <div class="data-layer-config-panel" style="background:#fff">
+                <div class="visible-warning">
+                    <i class="fa fa-warning fa-fw"></i> 该数据在当前比例尺不显示，点击按钮 <i class="fa fa-hand-o-right"></i> 缩放到可显示范围。
+                </div>
+                <div class="config-template-list">
+                    <div class="config-template">
+                        <img id="simple-template" class="template-thumb" src="./img/data-tpl-polygon-simple.png">
+                        <p class="template-name">单色填充</p>
+                        <i class="fa fa-check-circle fa-fw"></i>
+                    </div>
+                    <div class="config-template">
+                        <img id="choropleth-template" class="template-thumb" src="./img/data-tpl-polygon-choropleth.png">
+                        <p class="template-name">分段填充</p>
+                        <i class="fa fa-check-circle fa-fw"></i>
+                    </div>
+                    <div class="config-template">
+                        <img id="category-template" class="template-thumb" src="./img/data-tpl-polygon-category.png">
+                        <p class="template-name">单值填充</p>
+                        <i class="fa fa-check-circle fa-fw"></i>
+                    </div>
+                </div>
+                <div id="simple-panel" class="config-panel active">
+                    <!--@*<div class="config-item">
+                        <label>选择年份</label>
+                        <select class="number-year-picker year-picker"></select>
+                    </div>*@-->
+                    <div class="config-item">
+                        <label>符号填充</label>
+                        <select class="fill-color-picker color-picker"></select>
+                        <select class="fill-opacity-picker opacity-picker"></select>
+                    </div>
+                    <div class="config-item">
+                        <label>符号轮廓</label>
+                        <select class="outline-color-picker color-picker"></select>
+                        <select class="outline-width-picker outline-picker"></select>
+                        <select class="outline-opacity-picker opacity-picker"></select>
+                    </div>
+                    <div class="label-config config-item">
+                        <label>文本标注</label>
+                        <select class="label-color-picker color-picker"></select>
+                        <select class="label-field-picker field-picker"></select>
+                    </div>
+                    <div class="label-config config-item second-row">
+                        <select class="label-font-picker"></select>
+                        <select class="label-size-picker"></select>
+                    </div>
+                </div>
+                <div id="choropleth-panel" class="config-panel">
+                    <div class="config-item">
+                        <label>选择属性</label>
+                        <select class="number-field-picker field-picker"></select>
+                    </div>
+                    <div class="config-item">
+                        <label>选择年份</label>
+                        <select class="number-year-picker year-picker"></select>
+                    </div>
+                    <div class="config-item">
+                        <label>选择分段</label>
+                        <select class="bucket-type-picker"></select>
+                        <select class="bucket-count-picker"></select>
+                        <span class="btn-config-breaks fa fa-cog fa-fw hide" title="手动分段配置"></span>
+                    </div>
+                    <div class="config-item">
+                        <label>符号填充</label>
+                        <input class="fill-color-ramp-picker color-ramp-picker color-ramp-red" readonly>
+                        <select class="fill-opacity-picker opacity-picker"></select>
+                    </div>
+                    <div class="config-item">
+                        <label>符号轮廓</label>
+                        <select class="outline-color-picker color-picker"></select>
+                        <select class="outline-width-picker outline-picker"></select>
+                        <select class="outline-opacity-picker opacity-picker"></select>
+                    </div>
+                    <div class="label-config config-item">
+                        <label>文本标注</label>
+                        <select class="label-color-picker color-picker"></select>
+                        <select class="label-field-picker field-picker"></select>
+                    </div>
+                    <div class="label-config config-item second-row">
+                        <select class="label-font-picker"></select>
+                        <select class="label-size-picker"></select>
+                    </div>
+                    <div class="config-item warning">
+                        <i class="fa fa-warning fa-fw"></i> 该数据没有数值型字段
+                    </div>
+                </div>
+                <div id="category-panel" class="config-panel">
+                    <div class="config-item">
+                        <label>选择属性</label>
+                        <select class="category-field-picker field-picker"></select>
+                    </div>
+                    <div class="config-item">
+                        <label>选择年份</label>
+                        <select class="category-year-picker number-year-picker year-picker"></select>
+                    </div>
+                    <div class="config-item">
+                        <label>符号填充</label>
+                        <input class="fill-color-ramp-picker color-ramp-picker color-ramp-spectrumfull" readonly>
+                        <select class="fill-opacity-picker opacity-picker"></select>
+                    </div>
+                    <div class="config-item">
+                        <label>符号轮廓</label>
+                        <select class="outline-color-picker color-picker"></select>
+                        <select class="outline-width-picker outline-picker"></select>
+                        <select class="outline-opacity-picker opacity-picker"></select>
+                    </div>
+                    <div class="label-config config-item">
+                        <label>文本标注</label>
+                        <select class="label-color-picker color-picker"></select>
+                        <select class="label-field-picker field-picker"></select>
+                    </div>
+                    <div class="label-config config-item second-row">
+                        <select class="label-font-picker"></select>
+                        <select class="label-size-picker"></select>
+                    </div>
+                    <div class="config-item bucket-list-container">
+                        <label class="pull-left">颜色设置</label>
+                        <ul class="bucket-list scrollbar" class="config-item"></ul>
+                    </div>
+                </div>
+                <!-- 20171106 统计图 -->
+                <div class="cartogram-setting-wrapper">
+                    <div class="config-container">
+                        <label>统计图设置</label>
+                        <div class="config-content cartogram-check">
+                            <div class="material-switch">
+                                <input id="<%= dataLayer.cid %>-chk-cartogram-toggle" class="chk-toggle-cartogram" type="checkbox" />
+                                <label for="<%= dataLayer.cid %>-chk-cartogram-toggle" class="label-default"></label>
+                                启用统计图
+                            </div>
+                        </div>
+                    </div>
+                    <div id="cartogram-setting" class="config-container hide">
+                        <div class="config-item">
+                            <label>统计类别</label>
+                            <select class="cartogramType-picker field-picker"></select>
+                        </div>
+                        <div class="config-item">
+                            <label>数据类别</label>
+                            <select class="dataType-picker field-picker"></select>
+                        </div>
+                        <div class="config-item hide">
+                            <label>选择属性</label>
+                            <select id="cartogramFieldSelect" class="field-picker"></select>
+                        </div>
+                        <div class="config-item hide">
+                            <label>选择年份</label>
+                            <div id="cartogramYearDiv"></div>
+                        </div>
+                        <div class="config-item">
+                            <label>选择年份</label>
+                            <select id="cartogramYearSelect" class="year-picker"></select>
+                        </div>
+                        <div class="config-item">
+                            <label>选择属性</label>
+                            <div id="cartogramFieldDiv"></div>
+                        </div>
+                        <div class="config-item hide">
+                            <label>统计填充</label>
+                            <input class="fill-color-ramp-picker color-ramp-picker color-ramp-spectrumfull" readonly>
+                            <!--@*<select class="cartogram-size-picker size-picker"></select>*@-->
+                            <select class="cartogram-opacity-picker opacity-picker"></select>
+                        </div>
+                        <div class="pieBucketConDiv">
+                            <div class="config-item">
+                                <label>分段属性</label>
+                                <select class="subsection-field-picker field-picker"></select>
+                            </div>
+                            <div class="config-item">
+                                <label>分段年份</label>
+                                <select class="subsection-year-picker field-picker"></select>
+                            </div>
+                            <div class="config-item">
+                                <label>选择分段</label>
+                                <select class="cartogramBucket-count-picker" style="width:130px;"></select>
+                            </div>
+                            <div class="config-item">
+                                <label>饼图尺寸</label>
+                                <select class="cartogram-min-size-picker size-picker"></select> 至
+                                <select class="cartogram-max-size-picker size-picker"></select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="legend-setting-wrapper disabled unchecked">
+                    <div class="config-container">
+                        <label>图例设置</label>
+                        <div class="config-content">
+                            <div class="material-switch">
+                                <input id="<%= dataLayer.cid %>-chk-legend-toggle" class="chk-toggle-legend" type="checkbox" />
+                                <label for="<%= dataLayer.cid %>-chk-legend-toggle" class="label-default"></label>
+                                显示图例
+                            </div>
+                        </div>
+                    </div>
+                    <div class="config-container legend-setting">
+                        <label>图例名称</label>
+                        <div class="config-content">
+                            <input id="input-legend-title" type="text" class="form-control" placeholder="图例名称" value="<%= dataLayer.get('dataName') %>">
+                        </div>
+                    </div>
+                    <div class="config-container legend-setting">
+                        <label>图例顺序</label>
+                        <div class="config-content">
+                            <label>
+                                <input name="<%= dataLayer.cid %>-radio-legend-order" type="radio" class="toggle radio-legend-order" value="asc" checked> 正序
+                            </label>
+                            <label>
+                                <input name="<%= dataLayer.cid %>-radio-legend-order" type="radio" class="toggle radio-legend-order" value="desc" > 倒序
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="filter-container config-container hide">
+                    <label>过滤条件</label>
+                    <div class="config-content">
+                        <input id="input-filter" class="form-control" type="text" placeholder='如: "id">50 and "code"=&apos;A3&apos;'>
+                    </div>
+                </div>
+                <div class="animate-setting-wrapper">
+                    <div class="config-container">
+                        <label>时态设置</label>
+                        <div class="config-content">
+                            <div class="material-switch">
+                                <input id="<%= dataLayer.cid %>-chk-animate-toggle" class="chk-toggle-animate" type="checkbox" />
+                                <label for="<%= dataLayer.cid %>-chk-animate-toggle" class="label-default"></label>
+                                启用时态
+                            </div>
+                        </div>
+                    </div>
+                    <div id="animate-setting" class="config-container hide">
+                        <div class="config-item">
+                            <label>时态字段</label>
+                            <select class="time-field-picker" style="width:130px;"></select>
+                        </div>
+                        <div class="config-item">
+                            <label>时态分段</label>
+                            <select class="time-segment-picker"></select>
+                        </div>
+                        <div class="config-item">
+                            <label>播放间隔</label>
+                            <select class="time-duration-picker"></select> 秒
+                        </div>
+                        <div class="config-item">
+                            <label></label>
+                            <div class="material-switch">
+                                <input id="<%= dataLayer.cid %>-chk-time-accumulate" class="chk-time-accumulate" type="checkbox" />
+                                <label for="<%= dataLayer.cid %>-chk-time-accumulate" class="label-default"></label>
+                                按时段播放
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </script>
+    <!-- 透明度、边线的数值 -->
+    <script type="text/template" id="value-picker-template">
+        <% _.each(values, function(value){ %>
+        <option value="<%= value %>"<% if(value == defaultValue) { %> selected <% } %>><%= value %></option>
+        <%  }); %>
+    </script>
+    <!-- 颜色 -->
+    <script type="text/template" id="color-picker-template">
+        <% _.each(colors, function(color){ %>
+        <option value="<%= color %>" data-color="<%= color %>"<% if(color == defaultColor) { %> selected <% } %>><%= color %></option>
+        <%  }); %>
+    </script>
+    <!-- 字体、属性 -->
+    <script type="text/template" id="name-picker-template">
+        <% _.each(values, function(value){ %>
+        <option value="<%= value.code %>"<% if(value.code == defaultValue) { %> selected <% } %>><%= value.name %></option>
+        <%  }); %>
+    </script>
+    <!-- 统计图属性、年份多选 20171106 -->
+    <script type="text/template" id="name-checked-template">
+        <% _.each(values, function(value){ %>
+        <div class="checkConDiv">
+            <input id="Input<%=value.code %>" checked type="checkbox" value="<%=value.code %>" name="<%=value.name %>" />
+            <label for="Input<%=value.code %>" title="<%=value.name %>"><%=value.name %></label>
+        </div>
+        <%  }); %>
+</script>
+    <!-- 渲染模式 -->
+    <script type="text/template" id="blending-mode-picker-template">
+        <% _.each(values, function(value){ %>
+        <option value="<%= value.code %>"<% if(value.name == initValue) { %> selected <% } %>><%= value.name %></option>
+        <% }); %>
+    </script>
+    <!-- 单值颜色列表 -->
+    <script type="text/template" id="bucket-template">
+        <% var index = 0; %>
+        <% _.each(values, function(value){ %>
+        <li class="bucket unselectable">
+            <select id="bucket-<%= index++ %>" class="bucket-color-picker color-picker">
+                <% _.each(colorList, function(color){ %>
+                <option value="<%= color %>" data-color="<%= color %>"<% if(color == colors[index]) { %> selected <% } %>><%= color %></option>
+                <%  }); %>
+            </select>
+            <span id="<%= value %>" class="handle bucket-value limit-text"><i class="fa fa-ellipsis-v text-muted" title="拖拽可调整位置"></i> <%= value %><span>
+        </li>
+        <% }); %>
+    </script>
+    <!-- 图例 -->
+    <script type="text/template" id="legend-template">
+        <ul id="<%= id %>">
+            <li class="limit-text" data-toggle="tooltip" title="<%= title %>"><%= title %></li>
+            <% _.each(items, function(item){ %>
+            <li class="limit-text" data-toggle="tooltip" title="<%= item.value %>">
+                <div class="legend-symbol-wrapper" style="<%= widthVal %>">
+                    <div class="legend-<%= type %>-thumb" style="background: <%= item.color %>; width: <%= item.size %>px; height: <%= item.size %>px; border: 1px solid <%= outlineColor %>;"></div>
+                </div>
+                <span><%= item.value %></span>
+            </li>
+            <% }); %>
+        </ul>
+    </script>
+
+    <!-- 空数据 -->
+    <script type="text/x-jquery-tmpl" id="empty-template">
+        <div style="text-align:center;">暂无数据</div>
+    </script>
+    <!-- laoding -->
+    <script type="text/x-jquery-tmpl" id="laoding-template">
+        <div style="text-align:center;margin-top:5px;"><img src="./img/loading1.gif" style="vertical-align:sub;"/>正在加载...</div>
+    </script>
+    <!-- 收藏面板-搜索区域 -->
+    <script type="text/x-jquery-tmpl" id="collect-search-template">
+        <input class="collectKeywordsSearchInput" type="text" value="" placeholder="请输入关键字" />
+        <img class="collectKeywordsSearchBtnImg" src="./img/searchImg.png" alt="搜索" />
+        <span class="collectSearchTextSpan">类别:</span>
+        <!--@*<select class="collectTypeSearchSelect"></select>*@-->
+        <input type="text" id="txt_typeName" class="form-control" value="" placeholder="分类名称" readonly title="">
+        <div id="collectTreeview" style="display: none;">
+        </div>
+    </script>
+    <!-- 收藏面板-类别 -->
+    <script type="text/x-jquery-tmpl" id="collect-selectoption-template">
+        <option value=${code}>${text}</option>
+    </script>
+    <!-- 收藏面板-列表元素 -->
+    <script type="text/x-jquery-tmpl" id="collect-item-template">
+        <li class="collect-list-item" code="${PKCode}">
+            {{if ThemeType=="pt"}}
+            <img class="itemIconImg fl" src="./img/point.png" alt="点" />
+            {{/if}}
+            {{if ThemeType=="pg"}}
+            <img class="itemIconImg fl" src="./img/polygon.png" alt="面" />
+            {{/if}}
+            {{if ThemeType=="mixed"}}
+            <img class="itemIconImg fl" src="./img/mixed.png" alt="混合" />
+            {{/if}}
+            {{if ThemeType==null}}
+            <img class="itemIconImg fl" style="width:55px;height:55px;" alt="无类型" />
+            {{/if}}
+            <div class="itemTextDiv fl">
+                <div style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; cursor: default;" title="${NodeName}">${NodeName}</div>
+                <div style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;color:#888888;cursor:default;" title="${ThemeDesc}">${ThemeDesc}</div>
+            </div>
+            <div class="itemOperDiv fl" style="display:none;">
+                <img class="itemOperBtnImg" src="#" alt="Alternate Text" />
+                <ul class="itemOperListUl">
+                    <li class="itemOperListLi">修改</li>
+                    <li class="itemOperListLi">删除</li>
+                </ul>
+            </div>
+        </li>
+    </script>
+
+    <!-- 添加数据-窗口模版 -->
+    <script type="text/x-jquery-tmpl" id="addData-window-template">
+        <div id="addDataWin" class="addDataWindowConDiv">
+            <div class="addDataTitleDiv" style="">
+                <span>添加数据</span>
+                <i class="addDataCloseBtn"></i>
+            </div>
+            <div class="addDataContentDiv">
+                <ul class="addDataTabsUl">
+                    <li class="active" ac="mac">宏观数据</li>
+                    <li ac="mic">微观数据</li>
+                </ul>
+                <ul class="addDataContentUl">
+                    <li class="active" ac="mac">
+                        <div class="datagroup fl">
+                            <ul>
+                                <!--<li ac="public">公共数据</li>
+                                <li ac="sys">科技资源数据</li>-->
+                                <li ac="user">我的数据</li>
+                            </ul>
+                        </div>
+                        <div class="dataScreen fl">
+                            <!-- 搜索区域 -->
+                            <div class="addDataSearchconDiv">
+                                <div class="areaSearchDiv fl hide">地区<i class="fa fa-chevron-down" style="margin-left:5px;"></i></div>
+                                <input class="typeSearchInput fl" style="width:204px;" type="text" placeholder="请数据关键字" />
+                                <i class="typeSearchBtn fl"></i>
+                            </div>
+                            <!-- 分类展示区域 -->
+                            <div class="typeContentDiv">
+                                <!--@*<div class="typeTitleDiv">分类</div>*@-->
+                                <div class="typecontentDiv">
+                                    <!-- 树渲染 -->
+                                    <div class="typeTreeUl"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dataList fl">
+                            <div class="addDataIndexSelectDiv">
+                                <div class="addDataIndexTitleDiv">
+                                    <img src="${'./img/addDataIndexImg.png'}" alt="指标" />指标信息
+                                </div>
+                                <div class="addDataIndexConDiv"></div>
+                            </div>
+                            <div class="addDataYearSelectDiv">
+                                <div class="addDataYearTitleDiv">
+                                    <img src="${'./img/addDataYearImg.png'}" alt="时间" />时间信息
+                                </div>
+                                <div class="addDataYearConDiv"></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li ac="mic">
+                        <div class="datagroup fl">
+                            <ul>
+                                <!--<li ac="sys">科技资源数据</li>-->
+                                <li ac="user">我的数据</li>
+                            </ul>
+                        </div>
+                        <div class="dataScreen fl">
+                            <!-- 搜索区域 -->
+                            <div class="addDataSearchconDiv">
+                                <!--@*<div class="areaSearchDiv fl">地区<i class="fa fa-chevron-down" style="margin-left:5px;"></i></div>*@-->
+                                <input class="typeSearchInput fl" style="width:204px;" type="text" placeholder="请数据关键字" />
+                                <i class="typeSearchBtn fl"></i>
+                            </div>
+                            <!-- 分类展示区域 -->
+                            <div class="typeContentDiv">
+                                <!--@*<div class="typeTitleDiv">分类</div>*@-->
+                                <div class="typecontentDiv">
+                                    <!-- 树渲染 -->
+                                    <div class="typeTreeUl"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dataList fl">
+                            <div class="addDataIndexSelectDiv">
+                                <div class="addDataIndexTitleDiv">
+                                    <img src="${'./img/addDataIndexImg.png'}" alt="指标" />指标信息
+                                </div>
+                                <div class="addDataIndexConDiv"></div>
+                            </div>
+                            <div class="addDataYearSelectDiv">
+                                <div class="addDataYearTitleDiv">
+                                    <img src="${'./img/addDataYearImg.png'}" alt="时间" />时间信息
+                                </div>
+                                <div class="addDataYearConDiv"></div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="addDataBtnDiv">
+                <input class="addDataOkInput" type="button" value="确定" />
+                <input class="addDataCanelInput" type="button" value="取消" />
+            </div>
+        </div>
+    </script>
+    <!-- 指标数据渲染 -->
+    <script type="text/x-jquery-tmpl" id="indexdata-template">
+        <div style="line-height:20px;padding:0 5px;">
+            <label style="margin:0;"><input class="indexCheckBoxClass" type="checkbox" style="vertical-align:sub;margin-right:5px;outline:none;" code="${indexcode}" indextype="${indextype}" title="${indextext}" checked />${indextext}</label>
+        </div>
+    </script>
+    <!-- 年份数据模版 -->
+    <script type="text/x-jquery-tmpl" id="yeardata-template">
+        <label style="margin:0;margin-left:10px;"><input class="yearCheckBoxClass" type="checkbox" style="vertical-align:sub;margin-right:5px;outline:none;" code="${code}" />${year}</label>
+    </script>
+    <!-- 保存窗口 -->
+    <script type="text/x-jquery-tmpl" id="saveWin-template">
+        <div id="saveWinConDiv" style="width: 350px; height: 220px; background: #ffffff; border: 1px solid #333333; position: absolute; display: none; box-shadow: 3px 2px 1px #ababab; z-index: 1; background: #fff;">
+            <div class="titleConDiv">
+                <span>保存</span>
+                <i class="saveDataCloseBtn"></i>
+            </div>
+            <div style="padding:5px;">
+                <div style="margin:5px auto;"><span>类型：</span>
+                    <input type="text" id="txt_typename" class="form-control" value="" placeholder="分类名称" readonly>
+                    <div id="treeview" style="display: none;">
+                    </div>
+                </div>
+                <div style="margin: 5px auto;"><span style="margin-right:4px;">名称：</span><input type="text" value="" class="themeNameInputClass" placeholder="请输入专题图名称" style="border: 1px solid #333; width: 285px; height: 25px; line-height: 25px; padding: 0 5px;"/></div>
+                <div style="margin: 5px auto;"><span style="margin-right:4px;">描述：</span><textarea class="themeDecTextareaClass" style="background-color: #fff !important; width: 285px; vertical-align: top;height:70px;"></textarea></div>
+                <div class="btnClass" style="text-align:center;">
+                    <input type="button" value="保存" class="saveSubmitInput" />
+                    <input type="button" value="取消" class="saveCanelInput" />
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <!-- 20171113统计图列表添加模版 -->
+    <!-- 统计图数据添加面板模版 -->
+    <script type="text/template" id="addCartogramTemplate">
+        <div id="addCartogramListWin" >
+            <div class="addDataTitleDiv">
+                <span>统计图添加</span>
+                <i class="addDataCloseBtn"></i>
+            </div>
+            <div class="addDataContentDiv">
+                <div class="addCartogramItemDivClass"><span>数据源：</span><select id="addCartogramDataSource"></select></div>
+                <div class="addCartogramItemDivClass"><span>统计图：</span><select id="addCartogramType"></select></div>
+                <div class="addPieDivClass">
+                    <div class="addCartogramItemDivClass"><span>年份：</span><select id="addCartogramPieYearSelect" class="yearSelect-picker"></select></div>
+                    <div class="addCartogramItemDivClass"><span>指标：</span><select id="addCartogramPieIndexSelect" class="indexSelect-picker"></select></div>
+                </div>
+                <div class="addBarDivClass hide">
+                    <div class="addCartogramItemDivClass"><span>X轴：</span><select class="addCartogramXAxisSelect"></select></div>
+                    <div class="addCartogramItemDivClass axisClass"><span>数据类型：</span><select class="addCartogramDataType"></select></div>
+                    <div class="singleItem singleYear">
+                        <div class="addCartogramItemDivClass"><span>年份：</span><select id="addCartogramYearSelect" class="yearSelect-picker"></select></div>
+                        <div class="addCartogramItemDivClass"><span>指标：</span><div id="addCartogramIndexDiv" class="indexInput-picker"></div></div>
+                    </div>
+                    <div class="singleItem hide singleIndex">
+                        <div class="addCartogramItemDivClass"><span>指标：</span><select id="addCartogramIndexSelect" class="indexSelect-picker"></select></div>
+                        <div class="addCartogramItemDivClass"><span>年份：</span><div id="addCartogramYearDiv" class="yearInput-picker"></div></div>
+                    </div>
+                </div>
+                <div class="addDoubleYDivClass hide">
+                    <div class="addCartogramItemDivClass"><span>X轴：</span><select class="addCartogramXAxisSelect"></select></div>
+                    <div class="leftConfigClass doubleConfigClass">
+                        <div>左侧Y轴配置</div>
+                        <div class="addCartogramItemDivClass axisClass"><span>数据类型：</span><select class="addCartogramDataType"></select></div>
+                        <div class="singleItem singleYear">
+                            <div class="addCartogramItemDivClass"><span>年份(Y轴)：</span><select id="addCartogramDoubleLeftYearSelect" class="yearSelect-picker"></select></div>
+                            <div class="addCartogramItemDivClass"><span>指标：</span><div id="addCartogramDoubleYIndexDiv" class="indexInput-picker"></div></div>
+                        </div>
+                        <div class="singleItem hide singleIndex">
+                            <div class="addCartogramItemDivClass"><span>指标(Y轴)：</span><select id="addCartogramDoubleLeftIndexSelect" class="indexSelect-picker"></select></div>
+                            <div class="addCartogramItemDivClass"><span>年份：</span><div id="addCartogramDoubleYYearDiv" class="yearInput-picker"></div></div>
+                        </div>
+                    </div>
+                    <div class="rightConfigClass doubleConfigClass">
+                        <div>右侧Y轴配置</div>
+                        <div class="addCartogramItemDivClass axisClass"><span>数据类型：</span><select class="addCartogramDataType"></select></div>
+                        <div class="singleItem singleYear">
+                            <div class="addCartogramItemDivClass"><span>年份(Y轴)：</span><select id="addCartogramDoubleRightYearSelect" class="yearSelect-picker"></select></div>
+                            <div class="addCartogramItemDivClass"><span>指标：</span><div id="addCartogramDoubleYIndexDiv" class="indexInput-picker"></div></div>
+                        </div>
+                        <div class="singleItem hide singleIndex">
+                            <div class="addCartogramItemDivClass"><span>指标(Y轴)：</span><select id="addCartogramDoubleRightIndexSelect" class="indexSelect-picker"></select></div>
+                            <div class="addCartogramItemDivClass"><span>年份：</span><div id="addCartogramDoubleYYearDiv" class="yearInput-picker"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="addDataBtnDiv">
+                <input class="addDataOkInput" type="button" value="确定" />
+                <input class="addDataCanelInput" type="button" value="取消" />
+            </div>
+        </div>
+    </script>
+    <!-- 统计图下拉框数据添加模版 -->
+    <script type="text/template" id="addCartogramSelectTemplate">
+        <option value="${code}">${name}</option>
+    </script>
+    <!-- 统计图复选框模版 -->
+    <script type="text/ng-template" id="addCartogramCheckedTemplate">
+        <div class="addCartogramItemCheckedDiv"><input type="checkbox"  value="${code}" name="${name}" checked/><span>${name}</span></div>
+    </script>`
+    <!-- 20171113统计图列表展示模版 -->
+    <!-- 列表单元item模版 -->
+    <script type="text/template" id="cartogramListItemTemplate">
+        <div id="cartogram-<%= carData.cid %>" class="cartogramListItemDiv" ac="<%= carData.get('itemId') %>">
+            <div class="cartogramList-title limit-text">
+                <div class="cartogram-title-wrapper">
+                    <span class="limit-text" title="<%= carData.get('itemName') %>"><%= carData.get('itemName') %></span>
+                    <input class="cartogram-title-editor form-control" type="text" value="<%= carData.get('itemName') %>">
+                </div>
+            </div>
+            <span class="layer-tools pull-right">
+                <i class="cartogram-btn-toggle-up fa fa-minus" title="最小化"></i>
+                <i class="cartogram-btn-title-edit fa fa-pencil" title="编辑名称"></i>
+                <i id="<%= carData.cid %>" class="cartogram-btn-remove fa fa-trash-o" title="删除"></i>
+            </span>
+            <div class="layer-panel" style="background: #fff;overflow:auto;">
+                <div id="container-<%= carData.cid %>" class="containerDivClass" ></div>
+            </div>
+        </div>
+    </script>
+</body>
+</html>
