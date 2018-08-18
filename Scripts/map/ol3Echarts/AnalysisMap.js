@@ -264,6 +264,9 @@ function anaylisMap() {
                 color: '#fff'
             }
         },
+        geo: {
+
+        },
         tooltip: {
             trigger: 'item',
             formatter: function (params) {
