@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="92575474-7f63-44e9-a151-835d58a6511d" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Scripts/map/ol3Echarts/AnalysisMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/map/ol3Echarts/AnalysisMap.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/analysis.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/analysis.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/cartogramList.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/cartogramList.min.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,8 +18,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="478">
-              <caret line="70" lean-forward="true" selection-start-line="70" selection-end-line="70" />
+            <state relative-caret-position="722">
+              <caret line="185" column="18" selection-start-line="185" selection-start-column="15" selection-end-line="185" selection-end-column="18" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -39,8 +36,8 @@
       <file leaf-file-name="analysis.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/analysis.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="25" column="44" lean-forward="true" selection-start-line="25" selection-start-column="44" selection-end-line="25" selection-end-column="44" />
+            <state relative-caret-position="541">
+              <caret line="65" column="25" selection-start-line="65" selection-start-column="25" selection-end-line="65" selection-end-column="25" />
               <folding>
                 <element signature="e#43#387#0" />
                 <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
@@ -57,10 +54,13 @@
       <file leaf-file-name="AnalysisMap.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Scripts/map/ol3Echarts/AnalysisMap.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="266" column="14" selection-start-line="266" selection-start-column="14" selection-end-line="266" selection-end-column="14" />
+            <state relative-caret-position="75">
+              <caret line="208" lean-forward="true" selection-start-line="208" selection-end-line="208" />
               <folding>
                 <element signature="e#47#5697#0" />
+                <element signature="e#5738#6086#0" />
+                <element signature="e#6120#7907#0" />
+                <element signature="e#7928#18216#0" />
               </folding>
             </state>
           </provider>
@@ -95,10 +95,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>addDataWindowConDiv</find>
-      <find>display</find>
-      <find>addSecWin</find>
-      <find>addSec-window-template</find>
       <find>addSecWindowTemplate</find>
       <find>collectSearchConDiv</find>
       <find>saveWinConDiv</find>
@@ -125,6 +121,10 @@
       <find>folderBtn</find>
       <find>tool-panel-content</find>
       <find>collectListResize</find>
+      <find>rotate.</find>
+      <find>rotate.png</find>
+      <find>map</find>
+      <find>collectListResize60</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -142,9 +142,9 @@
         <option value="$PROJECT_DIR$/template/GetSelClassIndexInfosMic.json" />
         <option value="$PROJECT_DIR$/template/GetSelIndexDataInfos.json" />
         <option value="$PROJECT_DIR$/Scripts/ol3Echarts.js" />
-        <option value="$PROJECT_DIR$/Scripts/map/ol3Echarts/AnalysisMap.js" />
         <option value="$PROJECT_DIR$/js/cartogramList.min.js" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/Scripts/map/ol3Echarts/AnalysisMap.js" />
         <option value="$PROJECT_DIR$/js/analysis.js" />
       </list>
     </option>
@@ -290,12 +290,12 @@
       <workItem from="1534325671466" duration="3995000" />
       <workItem from="1534409434244" duration="12349000" />
       <workItem from="1534872544125" duration="3229000" />
-      <workItem from="1534929129151" duration="1995000" />
+      <workItem from="1534929129151" duration="3838000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="48787000" />
+    <option name="totallyTimeSpent" value="50630000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1280" y="-318" width="1920" height="1057" extended-state="6" />
@@ -313,11 +313,12 @@
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32894737" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.328125" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1341853" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1341853" />
       <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="bottom" id="Find" order="1" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
@@ -331,7 +332,6 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="right" id="SciView" order="3" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -368,6 +368,9 @@
           <caret line="266" column="14" selection-start-line="266" selection-start-column="14" selection-end-line="266" selection-end-column="14" />
           <folding>
             <element signature="e#47#5697#0" />
+            <element signature="e#5738#6086#0" />
+            <element signature="e#6120#7907#0" />
+            <element signature="e#7928#18216#0" />
           </folding>
         </state>
       </provider>
@@ -424,6 +427,9 @@
           <caret line="266" column="14" selection-start-line="266" selection-start-column="14" selection-end-line="266" selection-end-column="14" />
           <folding>
             <element signature="e#47#5697#0" />
+            <element signature="e#5738#6086#0" />
+            <element signature="e#6120#7907#0" />
+            <element signature="e#7928#18216#0" />
           </folding>
         </state>
       </provider>
@@ -456,16 +462,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Scripts/map/ol3Echarts/AnalysisMap.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="266" column="14" selection-start-line="266" selection-start-column="14" selection-end-line="266" selection-end-column="14" />
-          <folding>
-            <element signature="e#47#5697#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Scripts/hmap.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -473,10 +469,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/css/hmap.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret column="11541" lean-forward="true" selection-start-column="11541" selection-end-column="11541" />
+          <folding>
+            <element signature="e#1822#4273#2" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/analysisMicMac.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3916">
+          <caret line="3537" column="18" selection-start-line="3537" selection-start-column="18" selection-end-line="3537" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="478">
-          <caret line="70" lean-forward="true" selection-start-line="70" selection-end-line="70" />
+        <state relative-caret-position="722">
+          <caret line="185" column="18" selection-start-line="185" selection-start-column="15" selection-end-line="185" selection-end-column="18" />
           <folding>
             <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -489,10 +502,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Scripts/map/ol3Echarts/AnalysisMap.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="208" lean-forward="true" selection-start-line="208" selection-end-line="208" />
+          <folding>
+            <element signature="e#47#5697#0" />
+            <element signature="e#5738#6086#0" />
+            <element signature="e#6120#7907#0" />
+            <element signature="e#7928#18216#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/js/analysis.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="25" column="44" lean-forward="true" selection-start-line="25" selection-start-column="44" selection-end-line="25" selection-end-column="44" />
+        <state relative-caret-position="541">
+          <caret line="65" column="25" selection-start-line="65" selection-start-column="25" selection-end-line="65" selection-end-column="25" />
           <folding>
             <element signature="e#43#387#0" />
             <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />

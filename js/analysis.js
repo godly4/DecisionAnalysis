@@ -62,6 +62,9 @@
         } else {
             $(".map").css({width: widths - 70, height: heights - 60, marginLeft: 70 + "px"});
         }
+        //重新加载地图
+        $(".map").empty();
+        anaylisMap();
         //analysisMap.resize();
         //setProgressTime.resize();
     },

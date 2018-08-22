@@ -519,4 +519,5 @@ function anaylisMap() {
     };
 
     echartslayer.appendTo(Maps.getMap());
+
 }
