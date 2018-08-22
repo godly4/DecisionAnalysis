@@ -20,7 +20,7 @@
         var cw = $("#cartogramListConDiv").hasClass("hide") ? 0 : $("#cartogramListConDiv").width();
         //$('.content').css({ height: heights - 60 });
         $(".tool").css({height: heights - 60});
-        $("#cartogramListConDiv").css({height: heights - 60});
+        //$("#cartogramListConDiv").css({height: heights - collectListResize60});
         $("#folderBtn").css({top: (heights - 60) / 2});
         $("#folderCartogramBtn").css({top: (heights - 60) / 2});
         $(".tool-panel-content").css({height: heights - 106});
@@ -77,7 +77,7 @@
         $(".panel-close").click(function () {
             $("#folderBtn").hide();
             me.closeDataPanel(this);
-            collectList.collectClose();
+            //collectList.collectClose();
         });
         $(".toolbar").on("click", function (evt) {
             me.toolbarLiEvent(evt);
@@ -126,7 +126,7 @@
             } else {
                 $(ele).addClass('actived').siblings().removeClass('actived');
                 $(".tool-panel-container li").hide();
-                collectList.collectClose();
+                //collectList.collectClose();
                 $(".tool-panel-container li[ac='do']").show();
                 $("#folderBtn").show();
                 //me.loadData();
@@ -140,7 +140,7 @@
             } else {
                 $(ele).addClass('actived').siblings().removeClass('actived');
                 $(".tool-panel-container li").hide();
-                collectList.collectClose();
+                //collectList.collectClose();
                 $(".tool-panel-container li[ac='sd']").show();
                 $("#folderBtn").show();
                 //me.loadData();
@@ -152,13 +152,13 @@
             if ($(ele).hasClass("actived")) {
                 $(ele).removeClass('actived');
                 $(".tool-panel-container li[ac='cd']").hide();
-                collectList.collectClose();
+                //collectList.collectClose();
                 $("#folderBtn").hide();
             } else {
                 $(".tool-panel-container li").hide();
                 me.closeDataPanel(ele);
                 $(ele).addClass('actived').siblings().removeClass('actived');
-                collectList.collectListAjax();//ADD  20170830  收藏的列表加载
+                //collectList.collectListAjax();//ADD  20170830  收藏的列表加载
                 $(".tool-panel-container li[ac='cd']").show();
                 $("#folderBtn").show();
             }
@@ -249,10 +249,10 @@ function CollectList() {
 
 CollectList.prototype = {
     init: function () {
-        this.panelRender();//渲染搜索区域
-        this.getTypeAndRender();//类别的获取与渲染
+        //this.panelRender();//渲染搜索区域
+        //this.getTypeAndRender();//类别的获取与渲染
         //this.collectListResize();
-        this.collectListWindowResize();
+        //this.collectListWindowResize();
         this.bindEvent();//绑定事件
         //this.collectListAjax();//列表的获取
     },
@@ -264,7 +264,11 @@ CollectList.prototype = {
     //面内容尺寸计算
     collectListResize: function () {
         var me = this;
-        var H = $("#collection-panel .tool-panel-content").height();
+        var H = $("#" +
+            "" +
+            "" +
+            "" +
+            " .tool-panel-content").height();
         var searchH = $(me.collectSearchConDiv).outerHeight();
         var pagingH = $(me.collectListPageDiv).outerHeight();
         var listH = H - searchH - pagingH - 10;
@@ -616,7 +620,7 @@ function AddData() {
 AddData.prototype = {
     init: function () {
         var me = this;
-        this.layoutRender();
+        //this.layoutRender();
         //this.resize();
         $(window).resize(function () {
             me.resize();
@@ -1177,7 +1181,7 @@ function SaveData() {
 SaveData.prototype = {
     init: function () {
         var me = this;
-        $(me.saveWinTemplate).tmpl().appendTo('body');
+        //$(me.saveWinTemplate).tmpl().appendTo('body');
         me.resize();
         $(window).resize(function () {
             me.resize();

@@ -218,7 +218,7 @@ function anaylisMap() {
             extent: [-2.0037507067161843E7, -3.0240971958386254E7, 2.0037507067161843E7, 3.0240971958386205E7],
             projection: 'EPSG:102100',
             tileSize: 256,
-            zoom: 5, // resolution
+            zoom: 4 // resolution
         },
         baseLayers: [
             {
@@ -265,7 +265,12 @@ function anaylisMap() {
             }
         },
         geo: {
-
+            roam: true,
+            zoom: 4,
+            scaleLimit: {
+                min: '1',
+                max: '25'
+            }
         },
         tooltip: {
             trigger: 'item',
@@ -508,5 +513,10 @@ function anaylisMap() {
         ]
     };
     var echartslayer = new ol3Echarts(option);
+
+    echartslayer.onZoomEnd = function(){
+        console.log(echartslayer.$Map.getView().getZoom());
+    };
+
     echartslayer.appendTo(Maps.getMap());
 }
