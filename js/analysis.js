@@ -228,6 +228,8 @@ $(document).ready(function () {
     //addSec  = new AddSec();//回归数据实例化
     analysisSaveData = new SaveData();//保存数据
     addCartogramOper = new AddCartogramOper();//统计图
+    //获取科技资源
+    getResourceName();
 });
 
 //收藏
@@ -537,61 +539,6 @@ CollectList.prototype = {
         $("#loadingPage").hide();
     }
 }
-
-/*
-function AddSec() {
-    this.WinID = "#addSecWin";
-    this.addSecWindowTemplate = "#addSec-window-template";//面板模版
-    this.init();
-}
-
-AddSec.prototype = {
-    init: function () {
-        var me = this;
-        this.layoutRender();
-        //this.resize();
-        $(window).resize(function () {
-            me.resize();
-        });
-        this.bindWinEvent();
-    },
-    //计算面板打开的位置
-    resize: function () {
-        var me = this;
-        var H = ($(document).height() - 220) / 2;
-        var W = ($(document).width() - 350) / 2;
-        $(me.WinID).css("top", H).css("left", W);
-    },
-    //面板数据渲染
-    layoutRender: function () {
-        var me = this;
-        $(me.addSecWindowTemplate).tmpl().appendTo('body');
-    },
-    bindWinEvent: function() {
-        //关闭窗口事件
-        $(".addSecTitleDiv .addSecCloseBtn").on("click", function () {
-            me.cancelData()
-        });
-    },
-    //取消
-    cancelData: function () {
-        var me = this;
-        me.closeWindow();//关闭窗口
-    },
-    //窗口打开
-    openWindow: function () {
-        var me = this;
-        me.resize();
-        $(me.WinID).show();
-    },
-    //窗口关闭
-    closeWindow: function () {
-        var me = this;
-        $(me.WinID).hide();
-        //me.dataReset();
-    },
-}
-*/
 
 //添加数据
 function AddData() {
@@ -1511,4 +1458,74 @@ function regress() {
             $("#parseR")[0].innerHTML =  data.replace(/\n/g, "<br/>");
         },
     });
+}
+
+function getResourceType(that) {
+    $.ajax({
+        url: "http://114.215.68.90/resourceType",
+        type: "post",
+        data: {"name": that.value},
+        beforeSend: function () {
+            var list = [];
+            list.push("resourceType");
+            list.push("aggregationColumn");
+            clearChildren(list);
+        },
+        success: function (data) {
+            data = JSON.parse(data);
+            statList = data.statList;
+            typeList = data.typeList;
+            for (i = 0; i < typeList.length; i++) {
+                node = document.createElement("option");
+                node.setAttribute("value", typeList[i]);
+                node.innerHTML = typeList[i];
+                $("#resourceType")[0].appendChild(node.cloneNode(true));
+            }
+            for (i = 0; i < statList.length; i++) {
+                node = document.createElement("option");
+                node.setAttribute("value", statList[i]);
+                node.innerHTML = statList[i];
+                $("#aggregationColumn")[0].appendChild(node.cloneNode(true));
+            }
+        },
+        error: function (xhr, msg) {
+            alert('获取资源类别异常：' + msg);
+        }
+    })
+}
+
+function aggregation() {
+
+}
+
+function getResourceName() {
+    $.ajax({
+        url: "http://114.215.68.90/resourceList",
+        type: "get",
+        success: function (data) {
+            data = JSON.parse(data);
+            for (i = 0; i < data.length; i++) {
+                node = document.createElement("option");
+                node.setAttribute("value", data[i]);
+                node.innerHTML = data[i];
+                $("#resourceName")[0].appendChild(node.cloneNode(true));
+            }
+        },
+        error: function (xhr, msg) {
+            alert('获取资源列表异常：' + msg);
+        }
+    })
+}
+
+function getActionType(that) {
+    if (that.value == "sum")
+    {
+        $(".calHidden").hide();
+        $("#aggregationColumn").hide();
+    }
+    else if (that.value == "stat")
+    {
+        $(".calHidden").show();
+        $("#aggregationColumn").show();
+    }
 }

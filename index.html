@@ -119,23 +119,30 @@
                     <!-- 工具栏容器panel 年份－图层－类别－计算-->
                     <div class="tool-panel-content scrollbar form-group">
                         <label>年份</label>
-                        <select id="regressData" class="form-control" onchange="getRegressColumn(this)">
-                            <option value="noselect">---请选择---</option>
+                        <select id="aggregationYear" class="form-control">
+                            <option value="2017">2017</option>
+                            <option value="2016">2016</option>
+                            <option value="2015">2015</option>
                         </select>
                         <label>图层</label>
-                        <select id="columnY" class="form-control">
+                        <select id="resourceName" class="form-control" onchange="getResourceType(this)">
                             <option value="noselect">---请选择---</option>
                         </select>
                         <label>类别</label>
-                        <select id="columnX" class="form-control">
+                        <select id="resourceType" class="form-control">
                             <option value="noselect">---请选择---</option>
                         </select>
                         <label>计算</label>
-                        <select id="columnX" class="form-control">
+                        <select id="action" class="form-control" onchange="getActionType(this)">
+                            <option value="sum">计数</option>
+                            <option value="stat">统计</option>
+                        </select>
+                        <label class="calHidden" style="display: none">字段</label>
+                        <select id="aggregationColumn" class="form-control" style="display: none">
                             <option value="noselect">---请选择---</option>
                         </select>
                         <hr/>
-                        <button class="btn btn-success" type="button" style="display: block;float: right;clear: both;margin-top: 20px;" onclick="regress()">创建</button>
+                        <button class="btn btn-success" type="button" style="display: block;float: right;clear: both;margin-top: 20px;" onclick="aggregation()">创建</button>
                     </div>
                 </li>
                 <!-- 潜力评价 -->
