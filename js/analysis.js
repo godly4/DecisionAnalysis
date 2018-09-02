@@ -64,7 +64,7 @@
         }
         //重新加载地图
         $(".map").empty();
-        anaylisMap();
+        analyze();
         //analysisMap.resize();
         //setProgressTime.resize();
     },
@@ -220,7 +220,7 @@
 }
 
 $(document).ready(function () {
-    analysisMap = new anaylisMap();//地图实例化
+    analysisMap = new analyze();//地图实例化
     //setProgressTime = new SetProgressTime();//时间轴
     analysisOper.init();//页面
     collectList = new CollectList();//收藏列表实例化
@@ -1500,7 +1500,30 @@ function aggregation() {
     var type = $("#resourceType").val();
     var action = $("#action").val();
     var column = $("#aggregationColumn").val();
+    var zoom = 5;
+    $.ajax({
+        url: "http://114.215.68.90/aggregation",
+        type:"get",
+        data: {
+          "year": year,
+          "resource": resource,
+          "resourceType": type,
+          "action": action,
+          "column": column,
+          "zoom": zoom
+        },
+        beforeSend: function () {
 
+        },
+        success: function (data) {
+            data = JSON.parse(data);
+            console.log(data);
+            analyze(data);
+        },
+        error: function (xhr, msg) {
+            alert("区域聚合时异常: " + msg);
+        }
+    })
 }
 
 function getResourceName() {

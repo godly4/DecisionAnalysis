@@ -1,4 +1,4 @@
-function anaylisMap() {
+function analyze(myData) {
 
     var geoCoordMap = {
         "北京市":[116.407170,39.904690],
@@ -192,6 +192,8 @@ function anaylisMap() {
 
     var convertData = function (data) {
         var res = [];
+        if (!data)
+            return res;
         for (var i = 0; i < data.length; i++) {
             var geoCoord = geoCoordMap[data[i].name];
             if (geoCoord) {
@@ -298,15 +300,7 @@ function anaylisMap() {
             {
                 name: 'pm2.5',
                 type: 'scatter',
-                data: convertData([
-                    {name: "海门", value: 9},
-                    {name: "鄂尔多斯", value: 12},
-                    {name: "招远", value: 12},
-                    {name: "舟山", value: 12},
-                    {name: "齐齐哈尔", value: 14},
-                    {name: "盐城", value: 15},
-                    {name: "赤峰", value: 16}
-                ]),
+                data: convertData(myData),
                 symbolSize: 12,
                 label: {
                     normal: {
