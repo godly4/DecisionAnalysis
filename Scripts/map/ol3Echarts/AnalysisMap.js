@@ -210,7 +210,7 @@ function analyze(myData, myZoom) {
 
     if (!myZoom)
     {
-        myZoom = 5;
+        myZoom = 8;
     }
 
     var Maps = new HMap('map', {
@@ -220,7 +220,7 @@ function analyze(myData, myZoom) {
             fullScreen: false
         },
         view: {
-            center: [11646000.313439976, 3992000.6720247352],
+            center: [15046000.313439976, 4192000.6720247352],
             extent: [-2.0037507067161843E7, -3.0240971958386254E7, 2.0037507067161843E7, 3.0240971958386205E7],
             projection: 'EPSG:102100',
             tileSize: 256,
