@@ -1,6 +1,6 @@
-function analyze(myData) {
+function analyze(myData, myZoom) {
 
-    $(".map").empty();
+    $("#map").empty();
 
     var geoCoordMap = {
         "北京市":[116.407170,39.904690],
@@ -208,6 +208,11 @@ function analyze(myData) {
         return res;
     };
 
+    if (!myZoom)
+    {
+        myZoom = 5;
+    }
+
     var Maps = new HMap('map', {
         controls: {
             loading: true,
@@ -219,7 +224,7 @@ function analyze(myData) {
             extent: [-2.0037507067161843E7, -3.0240971958386254E7, 2.0037507067161843E7, 3.0240971958386205E7],
             projection: 'EPSG:102100',
             tileSize: 256,
-            zoom: 5 // resolution
+            zoom: myZoom // resolution
         },
         baseLayers: [
             {
@@ -293,6 +298,7 @@ function analyze(myData) {
             }
         ]
     };
+
     var echartslayer = new ol3Echarts(option);
 
     echartslayer.onZoomEnd = function(){

@@ -1517,7 +1517,7 @@ function aggregation(zoom) {
         success: function (data) {
             data = JSON.parse(data);
             console.log(data);
-            analyze(data);
+            analyze(data, zoom);
         },
         error: function (xhr, msg) {
             alert("区域聚合时异常: " + msg);
