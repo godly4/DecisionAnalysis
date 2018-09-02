@@ -270,20 +270,9 @@ function analyze(myData) {
                 return params.name + ' : ' + params.value[2];
             }
         },
-        visualMap: {
-            min: 0,
-            max: 200,
-            calculable: true,
-            inRange: {
-                color: ['#50a3ba', '#eac736', '#d94e5d']
-            },
-            textStyle: {
-                color: '#fff'
-            }
-        },
         series: [
             {
-                name: 'pm2.5',
+                name: 'data',
                 type: 'scatter',
                 data: convertData(myData),
                 symbolSize: 12,
