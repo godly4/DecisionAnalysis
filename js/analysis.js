@@ -1494,13 +1494,12 @@ function getResourceType(that) {
     })
 }
 
-function aggregation() {
+function aggregation(zoom) {
     var year = $("#aggregationYear").val();
     var resource = $("#resourceName").val();
     var type = $("#resourceType").val();
     var action = $("#action").val();
     var column = $("#aggregationColumn").val();
-    var zoom = 5;
     $.ajax({
         url: "http://114.215.68.90/aggregation",
         type:"get",

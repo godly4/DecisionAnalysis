@@ -1,5 +1,7 @@
 function analyze(myData) {
 
+    $(".map").empty();
+
     var geoCoordMap = {
         "北京市":[116.407170,39.904690],
         "东城区":[116.416370,39.928550],
@@ -323,6 +325,7 @@ function analyze(myData) {
 
     echartslayer.onZoomEnd = function(){
         console.log(echartslayer.$Map.getView().getZoom());
+        aggregation(echartslayer.$Map.getView().getZoom());
     };
 
     echartslayer.appendTo(Maps.getMap());

@@ -43536,7 +43536,7 @@ function setGeoCoords(geo, model) {
 
 if (__DEV__) {
     var mapNotExistsError = function (name) {
-        console.error('Map ' + name + ' not exists. You can download map file on http://echarts.baidu.com/download-map.html');
+        //console.error('Map ' + name + ' not exists. You can download map file on http://echarts.baidu.com/download-map.html');
     };
 }
 
