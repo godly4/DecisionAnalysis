@@ -1495,6 +1495,11 @@ function getResourceType(that) {
 }
 
 function aggregation() {
+    var year = $("#aggregationYear").val();
+    var resource = $("#resourceName").val();
+    var type = $("#resourceType").val();
+    var action = $("#action").val();
+    var column = $("#aggregationColumn").val();
 
 }
 
