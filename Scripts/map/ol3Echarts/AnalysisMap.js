@@ -264,27 +264,10 @@ function analyze(myData) {
                 color: '#fff'
             }
         },
-        geo: {
-            roam: true,
-            zoom: 4,
-            scaleLimit: {
-                min: '1',
-                max: '25'
-            }
-        },
         tooltip: {
             trigger: 'item',
             formatter: function (params) {
                 return params.name + ' : ' + params.value[2];
-            }
-        },
-        legend: {
-            orient: 'vertical',
-            y: 'bottom',
-            x:'right',
-            data:['pm2.5'],
-            textStyle: {
-                color: '#fff'
             }
         },
         visualMap: {
