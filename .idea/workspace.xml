@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="92575474-7f63-44e9-a151-835d58a6511d" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Scripts/map/ol3Echarts/AnalysisMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/map/ol3Echarts/AnalysisMap.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -15,8 +16,10 @@
     <session id="1362593050">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.closed" value="2" />
+          <entry key="project.open.time.2" value="2" />
           <entry key="project.open.time.5" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.opened" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -50,7 +53,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="515">
+            <state relative-caret-position="615">
               <caret line="41" column="30" selection-start-line="41" selection-start-column="27" selection-end-line="41" selection-end-column="31" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -70,8 +73,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/analysis.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="1519" column="15" lean-forward="true" selection-start-line="1519" selection-start-column="15" selection-end-line="1519" selection-end-column="15" />
+            <state relative-caret-position="273">
+              <caret line="1520" column="9" selection-start-line="1520" selection-start-column="9" selection-end-line="1520" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -79,11 +82,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Scripts/map/ol3Echarts/AnalysisMap.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="245">
-              <caret line="216" column="19" lean-forward="true" selection-start-line="216" selection-start-column="19" selection-end-line="216" selection-end-column="19" />
-              <folding>
-                <element signature="e#74#7280#0" />
-              </folding>
+            <state relative-caret-position="490">
+              <caret line="218" column="28" selection-start-line="218" selection-start-column="28" selection-end-line="218" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -91,7 +91,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Scripts/ol3Echarts.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
+            <state relative-caret-position="5805">
               <caret line="393" column="29" selection-start-line="393" selection-start-column="29" selection-end-line="393" selection-end-column="29" />
             </state>
           </provider>
@@ -100,7 +100,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Scripts/map/ol/ol.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="346">
+            <state relative-caret-position="114990">
               <caret line="7668" selection-start-line="7668" selection-end-line="7668" />
             </state>
           </provider>
@@ -186,11 +186,11 @@
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="1280" />
-    <option name="y" value="23" />
-    <option name="width" value="1920" />
-    <option name="height" value="1177" />
+    <option name="y" value="-38" />
+    <option name="width" value="1280" />
+    <option name="height" value="705" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -198,8 +198,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
-      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -229,14 +229,14 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SearchEverywhereHistoryKey" value="ana&#9;FILE&#9;file:///usr/local/var/www/DecisionAnalysis/js/analysis.js&#10;echart&#9;FILE&#9;file:///usr/local/var/www/DecisionAnalysis/Scripts/echarts.js&#10;echarts.js&#9;FILE&#9;file:///usr/local/var/www/DecisionAnalysis/Scripts/echarts.js&#10;analysis&#9;FILE&#9;file:///usr/local/var/www/DecisionAnalysis/js/analysis.js&#10;carto&#9;FILE&#9;file:///usr/local/var/www/DecisionAnalysis/js/cartogramList.min.js" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1535903790952" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1535956904236" />
     <property name="go.gopath.indexing.explicitly.defined" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="$PROJECT_DIR$/../../../bin/node" />
@@ -308,18 +308,20 @@
       <workItem from="1534409434244" duration="12349000" />
       <workItem from="1534872544125" duration="3229000" />
       <workItem from="1534929129151" duration="9189000" />
-      <workItem from="1535872435814" duration="21299000" />
+      <workItem from="1535872435814" duration="21879000" />
+      <workItem from="1535958158837" duration="12000" />
+      <workItem from="1536026976288" duration="125000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="77280000" />
+    <option name="totallyTimeSpent" value="77997000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1280" y="23" width="1920" height="1177" extended-state="6" />
+    <frame x="1280" y="-318" width="1920" height="1057" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13525027" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1373802" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Capture Tool" order="3" />
@@ -334,7 +336,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="FindBugs-IDEA" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32718894" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.36787564" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.3299539" />
@@ -401,12 +403,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Scripts/map/ol3Echarts/RenderMap.js">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/Scripts/map/ol3Echarts/RenderMap.js" />
+    <entry file="file://$PROJECT_DIR$/Scripts/hmap.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="36357" column="38" selection-start-line="36357" selection-start-column="38" selection-end-line="36357" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.es5.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="983">
+          <caret line="361" column="32" selection-start-line="361" selection-start-column="32" selection-end-line="361" selection-end-column="32" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="515">
+        <state relative-caret-position="615">
           <caret line="41" column="30" selection-start-line="41" selection-start-column="27" selection-end-line="41" selection-end-column="31" />
           <folding>
             <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -422,48 +436,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Scripts/hmap.js">
+    <entry file="file://$PROJECT_DIR$/Scripts/ol3Echarts.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="36357" column="38" selection-start-line="36357" selection-start-column="38" selection-end-line="36357" selection-end-column="38" />
+        <state relative-caret-position="5805">
+          <caret line="393" column="29" selection-start-line="393" selection-start-column="29" selection-end-line="393" selection-end-column="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Scripts/map/ol/ol.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="346">
+        <state relative-caret-position="114990">
           <caret line="7668" selection-start-line="7668" selection-end-line="7668" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.es5.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="983">
-          <caret line="361" column="32" selection-start-line="361" selection-start-column="32" selection-end-line="361" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Scripts/ol3Echarts.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="393" column="29" selection-start-line="393" selection-start-column="29" selection-end-line="393" selection-end-column="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/analysis.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="1519" column="15" lean-forward="true" selection-start-line="1519" selection-start-column="15" selection-end-line="1519" selection-end-column="15" />
+        <state relative-caret-position="273">
+          <caret line="1520" column="9" selection-start-line="1520" selection-start-column="9" selection-end-line="1520" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Scripts/map/ol3Echarts/AnalysisMap.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="216" column="19" lean-forward="true" selection-start-line="216" selection-start-column="19" selection-end-line="216" selection-end-column="19" />
-          <folding>
-            <element signature="e#74#7280#0" />
-          </folding>
+        <state relative-caret-position="490">
+          <caret line="218" column="28" selection-start-line="218" selection-start-column="28" selection-end-line="218" selection-end-column="28" />
         </state>
       </provider>
     </entry>

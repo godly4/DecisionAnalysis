@@ -210,7 +210,7 @@ function analyze(myData, myZoom) {
 
     if (!myZoom)
     {
-        myZoom = 8;
+        myZoom = 6;
     }
 
     var Maps = new HMap('map', {
@@ -220,8 +220,8 @@ function analyze(myData, myZoom) {
             fullScreen: false
         },
         view: {
-            center: [15046000.313439976, 4192000.6720247352],
-            extent: [-2.0037507067161843E7, -3.0240971958386254E7, 2.0037507067161843E7, 3.0240971958386205E7],
+            center: [12964000, 4853400],
+            //extent: [-2.0037507067161843E7, -3.0240971958386254E7, 2.0037507067161843E7, 3.0240971958386205E7],
             projection: 'EPSG:102100',
             tileSize: 256,
             zoom: myZoom // resolution
@@ -233,7 +233,7 @@ function analyze(myData, myZoom) {
                 layerType: 'TileXYZ',
                 tileGrid: {
                     tileSize: 256,
-                    extent: [-2.0037507067161843E7, -3.0240971958386254E7, 2.0037507067161843E7, 3.0240971958386205E7],
+                    //extent: [-2.0037507067161843E7, -3.0240971958386254E7, 2.0037507067161843E7, 3.0240971958386205E7],
                     origin: [-2.0037508342787E7, 2.0037508342787E7],
                     resolutions: [
                         156543.03392800014,
