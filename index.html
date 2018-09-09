@@ -1,20 +1,19 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width"/>
     <title>京津冀科技资源数字地图平台（决策分析）</title>
-    <link href="./Scripts/map/ol/ol.css" rel="stylesheet" />
-    <link href="./Scripts/map/ol/iclient9-openlayers.min.css" rel="stylesheet" />
-    <link href="./css/analysis.css" rel="stylesheet" />
-    <link href="./Scripts/bootstrap/bootstrap.min.css" rel="stylesheet" />
-    <link href="./Scripts/colors/colorRampPlugin.css" rel="stylesheet" />
-    <link href="./Scripts/bootstrap/bootstrap-colorselector.css" rel="stylesheet" />
-    <link href="./Scripts/bootstrap/font-awesome.min.css" rel="stylesheet" />
-    <link href="./Scripts/colors/colpick.css" rel="stylesheet" />
-    <link href="./css/analysisMicMac.min.css" rel="stylesheet" />
-    <link href="./css/cartogramList.min.css" rel="stylesheet" />
+    <link href="./Scripts/map/ol/ol.css" rel="stylesheet"/>
+    <link href="./Scripts/map/ol/iclient9-openlayers.min.css" rel="stylesheet"/>
+    <link href="./css/analysis.css" rel="stylesheet"/>
+    <link href="./Scripts/bootstrap/bootstrap.min.css" rel="stylesheet"/>
+    <link href="./Scripts/colors/colorRampPlugin.css" rel="stylesheet"/>
+    <link href="./Scripts/bootstrap/bootstrap-colorselector.css" rel="stylesheet"/>
+    <link href="./Scripts/bootstrap/font-awesome.min.css" rel="stylesheet"/>
+    <link href="./Scripts/colors/colpick.css" rel="stylesheet"/>
+    <link href="./css/analysisMicMac.min.css" rel="stylesheet"/>
+    <link href="./css/cartogramList.min.css" rel="stylesheet"/>
     <script src="./Scripts/jquery-1.11.2.min.js"></script>
     <script src="./Scripts/jquery.tmpl.min.js"></script>
     <script src="./Scripts/laypage/laypage.js"></script>
@@ -78,123 +77,131 @@
 
 </head>
 <body>
-    <!--logo -->
-    <div class="logo">
-        <img src="./img/logo.png" />
+<!--logo -->
+<div class="logo">
+    <img src="./img/logo.png"/>
+</div>
+<!-- 窗口 -->
+<div id="popup" class="ol-popup" style="display: none">
+    <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+    <div id="popup-content"></div>
+</div>
+<!--内容 -->
+<div class="content clearfloat">
+    <!-- 导航-->
+    <div class="tool clearfloat" style="position:relative;">
+        <!-- 工具栏 -->
+        <ul class="toolbar">
+            <li id="data-toolbar" ac="do" class="toolbar-item">
+                <img src="./img/database.png"/>
+                <span>现状评价</span>
+            </li>
+            <li id="save-toolbar" ac="sd" class="toolbar-item">
+                <img src="./img/save.png"/>
+                <span>潜力评价</span>
+            </li>
+            <li id="collection-toolbar" ac="cd" class="toolbar-item">
+                <img src="./img/collection.png"/>
+                <span>协同布局</span>
+            </li>
+        </ul>
+        <!-- 工具栏容器 -->
+        <ul class="tool-panel-container">
+            <!-- 现状评价 -->
+            <li id="data-panel" class="tool-panel" ac="do" style="display:none">
+                <!-- 工具栏容器头部 -->
+                <div class="panel-header clearfloat">
+                    <img class="panel-img" src="./img/collection2.png"/>
+                    <span>区域聚合</span>
+                    <img class="panel-close" ac="do" src="./img/close.png"/>
+                </div>
+                <!-- 工具栏容器panel 年份－图层－类别－计算-->
+                <div class="tool-panel-content scrollbar form-group">
+                    <label>年份</label>
+                    <select id="aggregationYear" class="form-control">
+                        <option value="2017">2017</option>
+                        <option value="2016">2016</option>
+                        <option value="2015">2015</option>
+                    </select>
+                    <label>图层</label>
+                    <select id="resourceName" class="form-control" onchange="getResourceType(this)">
+                        <option value="noselect">---请选择---</option>
+                    </select>
+                    <label>类别</label>
+                    <select id="resourceType" class="form-control">
+                        <option value="noselect">---请选择---</option>
+                    </select>
+                    <label>计算</label>
+                    <select id="action" class="form-control" onchange="getActionType(this)">
+                        <option value="sum">计数</option>
+                        <option value="stat">统计</option>
+                    </select>
+                    <label class="calHidden" style="display: none">字段</label>
+                    <select id="aggregationColumn" class="form-control" style="display: none">
+                        <option value="noselect">---请选择---</option>
+                    </select>
+                    <hr/>
+                    <button class="btn btn-success" type="button"
+                            style="display: block;float: right;clear: both;margin-top: 20px;" onclick="aggregation(5)">
+                        创建
+                    </button>
+                </div>
+            </li>
+            <!-- 潜力评价 -->
+            <li id="save-panel" class="tool-panel" ac="sd" style="display:none">
+                <!-- 工具栏容器头部 -->
+                <div class="panel-header clearfloat">
+                    <img class="panel-img" src="./img/collection2.png"/>
+                    <span>数据</span>
+                    <img class="panel-close" ac="do" src="./img/close.png"/>
+                </div>
+                <!-- 工具栏容器panel -->
+                <div class="tool-panel-content scrollbar form-group">
+                    <label>数据来源</label>
+                    <select id="regressData" class="form-control" onchange="getRegressColumn(this)">
+                        <option value="noselect">---请选择---</option>
+                    </select>
+                    <label>产出类型(Y)</label>
+                    <select id="columnY" class="form-control">
+                        <option value="noselect">---请选择---</option>
+                    </select>
+                    <label>投入类型(X)</label>
+                    <select id="columnX" class="form-control" multiple="multiple">
+                    </select>
+                    <hr/>
+                    <button class="btn btn-success" type="button"
+                            style="display: block;float: right;clear: both;margin-top: 20px;" onclick="regress()">计算
+                    </button>
+                </div>
+            </li>
+            <!-- 协同布局 -->
+            <li id="collection-panel" class="tool-panel" ac="cd" style="display:none">
+                <!-- 工具栏容器头部 -->
+                <div class="panel-header clearfloat">
+                    <img class="panel-img" src="./img/collection2.png"/>
+                    <span>收藏</span>
+                    <img class="panel-close" src="./img/close.png"/>
+                </div>
+                <!-- 工具栏容器panel -->
+                <div class="tool-panel-content">
+                    <!-- 搜索区域 -->
+                    <div class="collectSearchConDiv"></div>
+                    <ul class="collect-list-conent"></ul>
+                    <div id="collectListPageDiv"></div>
+                </div>
+            </li>
+        </ul>
     </div>
-    <!-- 窗口 -->
-    <div id="popup" class="ol-popup" style="display: none">
-        <a href="#" id="popup-closer" class="ol-popup-closer"></a>
-        <div id="popup-content"></div>
-    </div>
-    <!--内容 -->
-    <div class="content clearfloat">
-        <!-- 导航-->
-        <div class="tool clearfloat" style="position:relative;">
-            <!-- 工具栏 -->
-            <ul class="toolbar">
-                <li id="data-toolbar" ac="do" class="toolbar-item">
-                    <img src="./img/database.png" />
-                    <span>现状评价</span>
-                </li>
-                <li id="save-toolbar" ac="sd" class="toolbar-item">
-                    <img src="./img/save.png" />
-                    <span>潜力评价</span>
-                </li>
-                <li id="collection-toolbar" ac="cd" class="toolbar-item">
-                    <img src="./img/collection.png" />
-                    <span>协同布局</span>
-                </li>
-            </ul>
-            <!-- 工具栏容器 -->
-            <ul class="tool-panel-container">
-                <!-- 现状评价 -->
-                <li id="data-panel" class="tool-panel" ac="do" style="display:none">
-                    <!-- 工具栏容器头部 -->
-                    <div class="panel-header clearfloat">
-                        <img class="panel-img" src="./img/collection2.png" />
-                        <span>区域聚合</span>
-                        <img class="panel-close" ac="do" src="./img/close.png" />
-                    </div>
-                    <!-- 工具栏容器panel 年份－图层－类别－计算-->
-                    <div class="tool-panel-content scrollbar form-group">
-                        <label>年份</label>
-                        <select id="aggregationYear" class="form-control">
-                            <option value="2017">2017</option>
-                            <option value="2016">2016</option>
-                            <option value="2015">2015</option>
-                        </select>
-                        <label>图层</label>
-                        <select id="resourceName" class="form-control" onchange="getResourceType(this)">
-                            <option value="noselect">---请选择---</option>
-                        </select>
-                        <label>类别</label>
-                        <select id="resourceType" class="form-control">
-                            <option value="noselect">---请选择---</option>
-                        </select>
-                        <label>计算</label>
-                        <select id="action" class="form-control" onchange="getActionType(this)">
-                            <option value="sum">计数</option>
-                            <option value="stat">统计</option>
-                        </select>
-                        <label class="calHidden" style="display: none">字段</label>
-                        <select id="aggregationColumn" class="form-control" style="display: none">
-                            <option value="noselect">---请选择---</option>
-                        </select>
-                        <hr/>
-                        <button class="btn btn-success" type="button" style="display: block;float: right;clear: both;margin-top: 20px;" onclick="aggregation(5)">创建</button>
-                    </div>
-                </li>
-                <!-- 潜力评价 -->
-                <li id="save-panel" class="tool-panel" ac="sd" style="display:none">
-                    <!-- 工具栏容器头部 -->
-                    <div class="panel-header clearfloat">
-                        <img class="panel-img" src="./img/collection2.png" />
-                        <span>数据</span>
-                        <img class="panel-close" ac="do" src="./img/close.png" />
-                    </div>
-                    <!-- 工具栏容器panel -->
-                    <div class="tool-panel-content scrollbar form-group">
-                        <label>数据来源</label>
-                        <select id="regressData" class="form-control" onchange="getRegressColumn(this)">
-                            <option value="noselect">---请选择---</option>
-                        </select>
-                        <label>产出类型(Y)</label>
-                        <select id="columnY" class="form-control">
-                            <option value="noselect">---请选择---</option>
-                        </select>
-                        <label>投入类型(X)</label>
-                        <select id="columnX" class="form-control" multiple="multiple">
-                        </select>
-                        <hr/>
-                        <button class="btn btn-success" type="button" style="display: block;float: right;clear: both;margin-top: 20px;" onclick="regress()">计算</button>
-                    </div>
-                </li>
-                <!-- 协同布局 -->
-                <li id="collection-panel" class="tool-panel" ac="cd" style="display:none">
-                    <!-- 工具栏容器头部 -->
-                    <div class="panel-header clearfloat">
-                        <img class="panel-img" src="./img/collection2.png" />
-                        <span>收藏</span>
-                        <img class="panel-close" src="./img/close.png" />
-                    </div>
-                    <!-- 工具栏容器panel -->
-                    <div class="tool-panel-content">
-                        <!-- 搜索区域 -->
-                        <div class="collectSearchConDiv"></div>
-                        <ul class="collect-list-conent"></ul>
-                        <div id="collectListPageDiv"></div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <!-- 地图工具栏、配置折叠按钮 20171115 -->
-        <div id="folderBtn"><i></i></div>
-        <!-- 地图map -->
-        <div class="map" id="map"></div>
+    <!-- 地图工具栏、配置折叠按钮 20171115 -->
+    <div id="folderBtn"><i></i></div>
+    <!-- 地图map -->
+    <div>
+        <div class="map" id="map" style="float:left"></div>
         <!-- 侧边栏  -->
-        <div id="sidebar" style="width: 300px; height: 700px; margin-left:1000px;float:right">
+        <div id="sidebar" class="sidebar" style="float:right;display:none">
+            <iframe src="/DecisionAnalysis/sidebar.html"></iframe>
         </div>
     </div>
+</div>
 </body>
 </html>

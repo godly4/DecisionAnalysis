@@ -19,41 +19,33 @@
         $(".tool-panel-content").css({height: heights - 106});
         $("#data-layer-list").css({height: heights - 106 - 47});
         if ($(".toolbar>li").hasClass("actived")) {
+            $(".sidebar").hide();
+            $(".map").css({float: "none"});
+            //闭合状态
             if ($("#folderBtn").hasClass("unfolder")) {
-                $(".map").css({width: widths - cw, height: heights - 60, marginLeft: 0 + "px", marginRight: cw + "px"});
-                if ($("#folderCartogramBtn").hasClass("unfolder")) {
-                    $(".right-bottom-container").css({right: 8 + "px"});
-                    $(".map").css({width: widths, height: heights - 60, marginLeft: 0 + "px", marginRight: 0 + "px"});
-                } else {
-                    $(".right-bottom-container").css({right: (cw + 8) + "px"});
-                    $(".map").css({
-                        width: widths - cw,
-                        height: heights - 60,
-                        marginLeft: 0 + "px",
-                        marginRight: cw + "px"
-                    });
-                }
+                $(".right-bottom-container").css({right: (cw + 8) + "px"});
+                $(".map").css({
+                    width: widths - cw,
+                    height: heights - 60,
+                    marginLeft: 0 + "px",
+                    marginRight: cw + "px"
+                });
+                //展开状态
             } else {
-                if ($("#folderCartogramBtn").hasClass("unfolder")) {
-                    $(".right-bottom-container").css({right: 8 + "px"});
-                    $(".map").css({
-                        width: widths - 370,
-                        height: heights - 60,
-                        marginLeft: 370 + "px",
-                        marginRight: 0 + "px"
-                    });
-                } else {
-                    $(".right-bottom-container").css({right: (cw + 8) + "px"});
-                    $(".map").css({
-                        width: widths - cw - 370,
-                        height: heights - 60,
-                        marginLeft: 370 + "px",
-                        marginRight: cw + "px"
-                    });
-                }
+                $(".right-bottom-container").css({right: (cw + 8) + "px"});
+                $(".map").css({
+                    width: widths - cw - 370,
+                    height: heights - 60,
+                    marginLeft: 370 + "px",
+                    marginRight: cw + "px"
+                });
             }
         } else {
-            $(".map").css({width: widths - 70, height: heights - 60, marginLeft: 70 + "px"});
+            if ($(".sidebar")[0].style.display == "none")
+                $(".map").css({float: "left", width: widths - 70, height: heights - 60, marginLeft: 0 + "px"});
+            else
+                $(".map").css({float: "left", width: widths - 330, height: heights - 60, marginLeft: 0 + "px"});
+            $(".sidebar").css({float: "right", width: 260, height: heights - 60});
         }
         //重新加载地图
         $(".map").empty();
@@ -1135,9 +1127,9 @@ function regress() {
             "X": X,
             "Y": Y
         },
-        success: function(data){
+        success: function (data) {
             console.log(data);
-            $("#parseR")[0].innerHTML =  data.replace(/\n/g, "<br/>");
+            $("#parseR")[0].innerHTML = data.replace(/\n/g, "<br/>");
         },
     });
 }
@@ -1184,14 +1176,14 @@ function aggregation(zoom) {
     var column = $("#aggregationColumn").val();
     $.ajax({
         url: "http://114.215.68.90/aggregation",
-        type:"get",
+        type: "get",
         data: {
-          "year": year,
-          "resource": resource,
-          "resourceType": type,
-          "action": action,
-          "column": column,
-          "zoom": zoom
+            "year": year,
+            "resource": resource,
+            "resourceType": type,
+            "action": action,
+            "column": column,
+            "zoom": zoom
         },
         beforeSend: function () {
 
@@ -1227,13 +1219,11 @@ function getResourceName() {
 }
 
 function getActionType(that) {
-    if (that.value == "sum")
-    {
+    if (that.value == "sum") {
         $(".calHidden").hide();
         $("#aggregationColumn").hide();
     }
-    else if (that.value == "stat")
-    {
+    else if (that.value == "stat") {
         $(".calHidden").show();
         $("#aggregationColumn").show();
     }
