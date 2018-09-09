@@ -1,4 +1,4 @@
-function analyze(myData, myZoom) {
+function analyze(myWindow, myData, myZoom) {
 
     $("#map").empty();
 
@@ -298,8 +298,6 @@ function analyze(myData, myZoom) {
         ]
     };
 
-
-
     var echartslayer = new ol3Echarts(option);
 
     echartslayer.onZoomEnd = function () {
@@ -308,4 +306,8 @@ function analyze(myData, myZoom) {
     };
 
     echartslayer.appendTo(Maps.getMap());
+
+    //调用iframe中内部方法, 必须用外部的window对象！！
+    if (myWindow)
+        myWindow.frames.myFrame.contentWindow.myFunction();
 }
