@@ -1,5 +1,16 @@
 function analyze(myWindow, myData, myZoom) {
 
+    //调用iframe中内部方法, 必须用外部的window对象！！
+    if (myWindow)
+    {
+        var obj = analysisOper.getClientSize();
+        var widths = obj.width;
+        var heights = obj.height;
+        $(".map").css({float: "left", width: widths - 330, height: heights - 60, marginLeft: 0 + "px"});
+        $(".sidebar").css({float: "right", width: 260, height: heights - 60});
+        myWindow.frames.myFrame.contentWindow.fill(myData);
+    }
+
     $("#map").empty();
 
     var geoCoordMap = {
@@ -306,8 +317,4 @@ function analyze(myWindow, myData, myZoom) {
     };
 
     echartslayer.appendTo(Maps.getMap());
-
-    //调用iframe中内部方法, 必须用外部的window对象！！
-    if (myWindow)
-        myWindow.frames.myFrame.contentWindow.myFunction();
 }
