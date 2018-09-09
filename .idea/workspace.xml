@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="92575474-7f63-44e9-a151-835d58a6511d" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/sidebar.html" beforeDir="false" afterPath="$PROJECT_DIR$/sidebar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/analysis.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/analysis.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -42,26 +43,26 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="css" value="6" />
-          <entry key="html" value="1507" />
-          <entry key="js" value="3266" />
+          <entry key="html" value="1563" />
+          <entry key="js" value="3290" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="6" />
-          <entry key="HTML" value="1507" />
-          <entry key="JavaScript" value="3266" />
+          <entry key="HTML" value="1563" />
+          <entry key="JavaScript" value="3290" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="333">
-              <caret line="166" column="28" selection-start-line="166" selection-start-column="28" selection-end-line="166" selection-end-column="28" />
+            <state relative-caret-position="-225">
+              <caret line="32" column="34" selection-start-line="32" selection-start-column="34" selection-end-line="32" selection-end-column="34" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -83,8 +84,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/analysis.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="20" column="45" selection-start-line="20" selection-start-column="45" selection-end-line="20" selection-end-column="45" />
+            <state relative-caret-position="378">
+              <caret line="868" column="40" selection-start-line="868" selection-start-column="40" selection-end-line="868" selection-end-column="40" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -92,7 +97,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Scripts/map/ol3Echarts/AnalysisMap.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-133">
+            <state relative-caret-position="-882">
               <caret line="9" column="75" selection-start-line="9" selection-start-column="75" selection-end-line="9" selection-end-column="75" />
               <folding>
                 <element signature="e#82#7288#0" />
@@ -101,11 +106,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sidebar.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="513">
-              <caret line="88" column="14" lean-forward="true" selection-start-line="88" selection-start-column="14" selection-end-line="88" selection-end-column="14" />
+            <state relative-caret-position="453">
+              <caret line="84" column="14" lean-forward="true" selection-start-line="84" selection-start-column="14" selection-end-line="84" selection-end-column="14" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -126,7 +131,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>$(&quot;#map&quot;)</find>
       <find>get dom width or height</find>
       <find>\.map</find>
       <find>renderMap</find>
@@ -156,6 +160,7 @@
       <find>sidebar</find>
       <find>284</find>
       <find>overflow: scroll;</find>
+      <find>888</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -179,8 +184,8 @@
         <option value="$PROJECT_DIR$/test.html" />
         <option value="$PROJECT_DIR$/css/analysis.css" />
         <option value="$PROJECT_DIR$/Scripts/map/ol3Echarts/AnalysisMap.js" />
-        <option value="$PROJECT_DIR$/js/analysis.js" />
         <option value="$PROJECT_DIR$/sidebar.html" />
+        <option value="$PROJECT_DIR$/js/analysis.js" />
         <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
@@ -253,7 +258,7 @@
     <property name="SearchEverywhereHistoryKey" value="ana&#9;FILE&#9;file:///usr/local/var/www/DecisionAnalysis/js/analysis.js&#10;hmap.js&#9;FILE&#9;file:///usr/local/var/www/DecisionAnalysis/Scripts/hmap.js&#10;echart&#9;FILE&#9;file:///usr/local/var/www/DecisionAnalysis/Scripts/echarts.js&#10;echarts.js&#9;FILE&#9;file:///usr/local/var/www/DecisionAnalysis/Scripts/echarts.js&#10;analysis&#9;FILE&#9;file:///usr/local/var/www/DecisionAnalysis/js/analysis.js&#10;carto&#9;FILE&#9;file:///usr/local/var/www/DecisionAnalysis/js/cartogramList.min.js" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1536503985150" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1536504859490" />
     <property name="go.gopath.indexing.explicitly.defined" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="$PROJECT_DIR$/../../../bin/node" />
@@ -329,12 +334,12 @@
       <workItem from="1535958158837" duration="12000" />
       <workItem from="1536026976288" duration="363000" />
       <workItem from="1536049368578" duration="609000" />
-      <workItem from="1536482564676" duration="15409000" />
+      <workItem from="1536482564676" duration="16027000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="94253000" />
+    <option name="totallyTimeSpent" value="94871000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1280" y="23" width="1920" height="1177" extended-state="6" />
@@ -471,16 +476,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/analysis.js">
+    <entry file="file://$PROJECT_DIR$/sidebar.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="45" selection-start-line="20" selection-start-column="45" selection-end-line="20" selection-end-column="45" />
+        <state relative-caret-position="453">
+          <caret line="84" column="14" lean-forward="true" selection-start-line="84" selection-start-column="14" selection-end-line="84" selection-end-column="14" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Scripts/map/ol3Echarts/AnalysisMap.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-133">
+        <state relative-caret-position="-882">
           <caret line="9" column="75" selection-start-line="9" selection-start-column="75" selection-end-line="9" selection-end-column="75" />
           <folding>
             <element signature="e#82#7288#0" />
@@ -488,10 +498,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/js/analysis.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="868" column="40" selection-start-line="868" selection-start-column="40" selection-end-line="868" selection-end-column="40" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="166" column="28" selection-start-line="166" selection-start-column="28" selection-end-line="166" selection-end-column="28" />
+        <state relative-caret-position="-225">
+          <caret line="32" column="34" selection-start-line="32" selection-start-column="34" selection-end-line="32" selection-end-column="34" />
           <folding>
             <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -505,18 +526,6 @@
             <element signature="n#style#0;n#div#0;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#iframe#0;n#div#1;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sidebar.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="88" column="14" lean-forward="true" selection-start-line="88" selection-start-column="14" selection-end-line="88" selection-end-column="14" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>

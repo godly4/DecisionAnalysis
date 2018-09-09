@@ -885,20 +885,13 @@ SaveData.prototype = {
                                     me.loadState(opt.id, opt.nodeId);
                                 }
                             };
-                            $('#treeview').treeview(options);
                         } else {
                             //追加
                             var treeDataNode = me.treeDataIntegration(treeData);
-                            $('#treeview').treeview("addNode", [nodeId, {node: treeDataNode, silent: true}]);
                         }
                     } else {
                         if (nodeId != undefined) {//20171018  当在异步加载数据时，解决返回数据为空的情况；区分加载第一层树渲染数据渲染的情况
-                            $('#treeview').treeview("addNode", [nodeId, {
-                                node: [{text: "此类型下无查询数据", id: ""}],
-                                silent: true
-                            }]);
                         } else {
-                            $('#treeview').html("<div style='text-align:center;margin-top:5px;'>暂无分类</div>");
                         }
                     }
                 } else {
