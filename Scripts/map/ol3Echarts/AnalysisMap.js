@@ -225,7 +225,7 @@ function analyze(myWindow, myData, myZoom) {
 
     var Maps = new HMap('map', {
         controls: {
-            loading: true,
+            loading: false,
             zoomSlider: true,
             fullScreen: false
         },
