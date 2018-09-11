@@ -993,12 +993,12 @@ SaveData.prototype = {
     //内容重置
     reset: function () {
         var me = this;
-        if ($(me.WinID + " #txt_typename").val() != "")
-            $(me.WinID + ' #treeview').treeview("unselectNode", $(me.WinID + ' #treeview').treeview("getSelected"), {silent: true});
+        //if ($(me.WinID + " #txt_typename").val() != "")
+        //    $(me.WinID + ' #treeview').treeview("unselectNode", $(me.WinID + ' #treeview').treeview("getSelected"), {silent: true});
         $(me.WinID + " #txt_typename").val("");
         $(me.WinID + " .themeNameInputClass").val("");
         $(me.WinID + " .themeDecTextareaClass").val("");
-        $('#treeview').hide();
+        //$('#treeview').hide();
         me.submitParam.ParCode = "", me.submitParam.NodeName = "",
             me.submitParam.NodeType = "theme", me.submitParam.ThemeType = "",
             me.submitParam.ThemeDesc = "", me.submitParam.ThemeInfo = [];
