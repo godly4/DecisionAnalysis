@@ -285,6 +285,21 @@ function analyze(myWindow, myData, myZoom) {
                 return params.name + ' : ' + params.value[2];
             }
         },
+        visualMap: {
+            min: 10,
+            max: 20000,
+            show: false,
+            calculable: true,
+            inRange: {
+                color: ['#50a3ba', '#eac736', '#d94e5d']
+            },
+            outOfRange: {
+                color: ['#54a3ba', '#ebc736', '#d93e5d']
+            },
+            textStyle: {
+                color: '#fff'
+            }
+        },
         series: [
             {
                 name: 'data',
