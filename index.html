@@ -13,6 +13,7 @@
     <!--不使用openlayers自带地图
     <script src="./Scripts/map/ol/analysisDataMap.min.js"></script>-->
     <script src="./Scripts/bootstrap/bootstrap.min.js"></script>
+    <script src="./Scripts/bootstrap/bootstrap-select.js"></script>
     <script src="./js/analysisMicMac.min.js"></script>
     <script src="./js/analysis.js"></script>
     <script src="./js/cartogramList.min.js"></script>
@@ -111,8 +112,13 @@
                     </select>
                     <label>计算</label>
                     <select id="action" class="form-control" onchange="getActionType(this)">
-                        <option value="sum">计数</option>
-                        <option value="stat">统计</option>
+                        <optgroup label="区域聚合">
+                            <option value="sum">计数</option>
+                            <option value="stat">统计</option>
+                        </optgroup>
+                        <optgroup label="人均效率">
+                            <option value="aver">效率</option>
+                        </optgroup>
                     </select>
                     <label class="calHidden" style="display: none">字段</label>
                     <select id="aggregationColumn" class="form-control" style="display: none">

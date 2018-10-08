@@ -1220,4 +1220,8 @@ function getActionType(that) {
         $(".calHidden").show();
         $("#aggregationColumn").show();
     }
+    else if (that.value == "aver") {
+        $(".calHidden").hide();
+        $("#aggregationColumn").hide();
+    }
 }
