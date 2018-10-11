@@ -220,7 +220,7 @@ function analyze(myWindow, myData, myZoom) {
         }
         console.log("dataArray:" + dataArray);
         if (dataArray.length > 5)
-            levelArray = ss.jenks(dataArray, 5);
+            levelArray = ss.jenks(dataArray, 3);
         else
             levelArray = dataArray;
         return res;
@@ -314,7 +314,7 @@ function analyze(myWindow, myData, myZoom) {
                 data: convertData(myData),
                 symbolSize: function(val)
                 {
-                    return 10 + getLevel(val[2], levelArray) * 2;
+                    return 10 + getLevel(val[2], levelArray) * 8;
                 },
                 label: {
                     normal: {
@@ -354,5 +354,5 @@ function getLevel(value, levelArray)
             return i;
         }
     }
-    return 0;
+    return 1;
 }
