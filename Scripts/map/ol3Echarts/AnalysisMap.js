@@ -202,6 +202,7 @@ function analyze(myWindow, myData, myZoom) {
         "桥西区": [114.4674240000, 38.0103810000],
         "新华区": [114.4694360000, 38.0571200000]
     };
+    var dataArray = new Array(), levelArray = new Array();
 
     var convertData = function (data) {
         var res = [];
@@ -210,12 +211,18 @@ function analyze(myWindow, myData, myZoom) {
         for (var i = 0; i < data.length; i++) {
             var geoCoord = geoCoordMap[data[i].name];
             if (geoCoord) {
+                dataArray.push(data[i].value);
                 res.push({
                     name: data[i].name,
                     value: geoCoord.concat(data[i].value)
                 });
             }
         }
+        console.log("dataArray:" + dataArray);
+        if (dataArray.length > 5)
+            levelArray = ss.jenks(dataArray, 5);
+        else
+            levelArray = dataArray;
         return res;
     };
 
@@ -305,7 +312,10 @@ function analyze(myWindow, myData, myZoom) {
                 name: 'data',
                 type: 'scatter',
                 data: convertData(myData),
-                symbolSize: 12,
+                symbolSize: function(val)
+                {
+                    return 10 + getLevel(val[2], levelArray) * 2;
+                },
                 label: {
                     normal: {
                         show: false
@@ -332,4 +342,17 @@ function analyze(myWindow, myData, myZoom) {
     };
 
     echartslayer.appendTo(Maps.getMap());
+}
+
+function getLevel(value, levelArray)
+{
+    for (var i = 0; i < levelArray.length - 1; i++)
+    {
+        if (value >= levelArray[i] && value <= levelArray[i+1])
+        {
+            console.log(value, levelArray, i);
+            return i;
+        }
+    }
+    return 0;
 }
