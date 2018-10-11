@@ -346,13 +346,13 @@ function analyze(myWindow, myData, myZoom) {
 
 function getLevel(value, levelArray)
 {
-    for (var i = 0; i < levelArray.length - 1; i++)
+    for (i = 0; i < levelArray.length - 1; i++)
     {
-        if (value >= levelArray[i] && value <= levelArray[i+1])
+        if (value >= levelArray[i] && value < levelArray[i+1])
         {
             console.log(value, levelArray, i);
             return i;
         }
     }
-    return 1;
+    return i;
 }
