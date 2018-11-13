@@ -114,7 +114,15 @@
                 $(".tool-panel-container li").hide();
                 //collectList.collectClose();
                 $(".tool-panel-container li[ac='do']").show();
+                //切换回来时把之前的页面去除
                 $("#folderBtn").show();
+                //打开地图
+                $("#total").show();
+                $("#second").hide();
+                //清空下拉列表
+                $("#regressData option[value!=\"noselect\"]").remove();
+                $("#columnY option[value!=\"noselect\"]").remove();
+                $("#columnX option").remove();
                 //me.loadData();
             }
         } else if ((/^li$/i.test(e.tagName) && $(e).attr("ac") == 'sd') || (/^li$/i.test(eParent.tagName) && $(eParent).attr("ac") == 'sd')) {//潜力评价
@@ -1137,6 +1145,10 @@ function regress() {
             var widths = obj.width;
             var heights = obj.height;
             $("#formula").text(data["result"]);
+
+            //清空表格
+            $(".table th").remove();
+            $(".table td").remove();
             var table = data["table"];
             //添加表头
             var th = document.createElement("th");
@@ -1148,7 +1160,7 @@ function regress() {
             for (var i = 0; i < $("#columnX").val().length; i++)
             {
                 th = document.createElement("th");
-                th.innerHTML = "X"+(i+1);
+                th.innerHTML = "X"+(i+1)+"(点击可编辑)";
                 $("#head")[0].appendChild(th);
             }
             th = document.createElement("th");
@@ -1167,7 +1179,7 @@ function regress() {
                     if (i == 0)
                         td.innerHTML = table[id][i];
                     else
-                        td.innerHTML = "<a href=\"#\" data-name='editable' data-pk='"+id+"' data-url=''>"+table[id][i]+"</a>";
+                        td.innerHTML = "<a data-name='editable'>"+table[id][i]+"</a>";
                     tr.appendChild(td);
                 }
                 var td = document.createElement("td");
@@ -1177,11 +1189,11 @@ function regress() {
             }
             //参数
             var factors = data["betas"];
-            var values = [];
             //计算新y值
             $("a[data-name='editable']").editable({
                 success: function(response, newValue)
                 {
+                    var values = [];
                     //获取tr下子节点
                     var childs = this.parentNode.parentNode.children;
                     //头两个是gdcode和y，最后一个是新y值
