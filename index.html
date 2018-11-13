@@ -9,7 +9,8 @@
     <link href="./Scripts/bootstrap/bootstrap.min.css" rel="stylesheet"/>
     <link href="./Scripts/bootstrap/font-awesome.min.css" rel="stylesheet"/>
     <link href="./css/analysisMicMac.min.css" rel="stylesheet"/>
-    <script src="./Scripts/jquery-1.11.2.min.js"></script>
+    <!--<script src="./Scripts/jquery-1.11.2.min.js"></script>-->
+    <script src="./Scripts/bootstrap/jquery-2.0.3.min.js"></script>
     <!--不使用openlayers自带地图
     <script src="./Scripts/map/ol/analysisDataMap.min.js"></script>-->
     <script src="./Scripts/bootstrap/bootstrap.min.js"></script>
@@ -25,6 +26,12 @@
     <!--分类-->
     <script src="./Scripts/simple_statistics.js"></script>
     <link href="./css/hmap.css" rel="stylesheet"/>
+    <!--公式
+    <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML-full"></script>
+    -->
+    <!--可编辑表格-->
+    <link href="./Scripts/bootstrap/bootstrap-editable.css"/>
+    <script src="./Scripts/bootstrap/bootstrap-editable.js"></script>
     <style type="text/css">
         /*---滚动条默认显示样式--*/
         ::-webkit-scrollbar-thumb {
@@ -152,7 +159,7 @@
                         <option value="noselect">---请选择---</option>
                     </select>
                     <label>投入类型(X)</label>
-                    <select id="columnX" class="form-control" multiple="multiple">
+                    <select id="columnX" name="columnX" class="form-control" multiple="multiple">
                     </select>
                     <hr/>
                     <button class="btn btn-success" type="button"
@@ -183,9 +190,28 @@
     <!-- 地图map -->
     <div id="total">
         <div class="map" id="map" style="float:left"></div>
-        <!-- 侧边栏  -->
         <div id="sidebar" class="sidebar" style="float:right;">
             <iframe id="myFrame" src="/DecisionAnalysis/sidebar.html" style="width:100%; height:100%"></iframe>
+        </div>
+    </div>
+    <!-- 潜力评价 -->
+    <div id="second" style="display: none">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h4>回归公式：</h4>
+            </div>
+            <div class="panel-body" style="height: 80px">
+                <pre style="text-align: center; font-size: large" id="formula"></pre>
+            </div>
+            <div style="display: block; max-height: 800px; overflow: auto; -ms-overflow-style: -ms-autohiding-scrollbar;">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                    <tr id="head"></tr>
+                    </thead>
+                    <tbody id="body">
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

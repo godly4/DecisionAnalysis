@@ -212,6 +212,8 @@ $(document).ready(function () {
     addCartogramOper = new AddCartogramOper();//统计图
     //获取科技资源
     getResourceName();
+    //编辑表格内联模式
+    $.fn.editable.defaults.mode = 'inline';
 });
 
 //添加数据
@@ -1094,11 +1096,14 @@ function getRegressColumn(that) {
         success: function (data) {
             data = JSON.parse(data);
             for (i = 0; i < data.length; i++) {
+                var result = data[i];
                 node = document.createElement("option");
-                node.setAttribute("value", data[i]);
-                node.innerHTML = data[i];
-                $("#columnX")[0].appendChild(node.cloneNode(true));
-                $("#columnY")[0].appendChild(node.cloneNode(true));
+                node.setAttribute("value", result.split("_")[0]);
+                node.innerHTML = result.split("_")[1];
+                if (result.split("_")[0] == "Y")
+                    $("#columnY")[0].appendChild(node.cloneNode(true));
+                else
+                    $("#columnX")[0].appendChild(node.cloneNode(true));
             }
         },
         error: function (xhr, msg) {
@@ -1110,7 +1115,7 @@ function getRegressColumn(that) {
 function regress() {
     var name = $("#regressData")[0].value;
     var Y = $("#columnY")[0].value;
-    var X = $("#columnX").val();
+    var X = $("#columnX").val().join(",");
     url = "http://114.215.68.90/regressAnalysis";
     $.ajax({
         url: url,
@@ -1121,8 +1126,88 @@ function regress() {
             "Y": Y
         },
         success: function (data) {
+            data = JSON.parse(data);
             console.log(data);
-            $("#parseR")[0].innerHTML = data.replace(/\n/g, "<br/>");
+            //关闭地图
+            $("#total").hide();
+            //关闭收缩
+            $("#folderBtn").hide();
+            //展示结果
+            var obj = analysisOper.getClientSize();
+            var widths = obj.width;
+            var heights = obj.height;
+            $("#formula").text(data["result"]);
+            var table = data["table"];
+            //添加表头
+            var th = document.createElement("th");
+            th.innerHTML = "GDCODE";
+            $("#head")[0].appendChild(th);
+            th = document.createElement("th");
+            th.innerHTML = Y;
+            $("#head")[0].appendChild(th);
+            for (var i = 0; i < $("#columnX").val().length; i++)
+            {
+                th = document.createElement("th");
+                th.innerHTML = "X"+(i+1);
+                $("#head")[0].appendChild(th);
+            }
+            th = document.createElement("th");
+            th.innerHTML = "新Y值";
+            $("#head")[0].appendChild(th);
+            //添加内容
+            for (var id in table)
+            {
+                var tr = document.createElement("tr");
+                var td = document.createElement("td");
+                td.innerHTML = id;
+                tr.appendChild(td);
+                for (var i = 0; i < table[id].length; i++)
+                {
+                    td = document.createElement("td");
+                    if (i == 0)
+                        td.innerHTML = table[id][i];
+                    else
+                        td.innerHTML = "<a href=\"#\" data-name='editable' data-pk='"+id+"' data-url=''>"+table[id][i]+"</a>";
+                    tr.appendChild(td);
+                }
+                var td = document.createElement("td");
+                td.innerHTML = "0";
+                tr.appendChild(td);
+                $("#body")[0].appendChild(tr);
+            }
+            //参数
+            var factors = data["betas"];
+            var values = [];
+            //计算新y值
+            $("a[data-name='editable']").editable({
+                success: function(response, newValue)
+                {
+                    //获取tr下子节点
+                    var childs = this.parentNode.parentNode.children;
+                    //头两个是gdcode和y，最后一个是新y值
+                    for (var i = 2; i < childs.length - 1; i++)
+                    {
+                        if (childs[i] != this.parentNode)
+                        {
+                            values.push(parseFloat(childs[i].innerText.trim()));
+                        }
+                        else
+                        {
+                            values.push(parseFloat(newValue));
+                        }
+                    }
+                    //console.log(factors);
+                    //console.log(values);
+                    var result = 0;
+                    for (var i = 0; i < values.length; i++)
+                    {
+                        result += values[i] * factors[i];
+                    }
+                    result += factors[factors.length - 1];
+                    childs[childs.length-1].innerText = new Number(result).toFixed(1);
+                }
+            });
+            $("#second").css({display:"block", width: widths - 400, height: heights - 60, marginLeft: 380 + "px"});
         },
     });
 }
