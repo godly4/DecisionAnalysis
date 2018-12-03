@@ -1152,19 +1152,19 @@ function regress() {
             var table = data["table"];
             //添加表头
             var th = document.createElement("th");
-            th.innerHTML = "GDCODE";
+            th.innerHTML = "地名";
             $("#head")[0].appendChild(th);
             th = document.createElement("th");
-            th.innerHTML = Y;
+            th.innerHTML = "产出值";
             $("#head")[0].appendChild(th);
             for (var i = 0; i < $("#columnX").val().length; i++)
             {
                 th = document.createElement("th");
-                th.innerHTML = "X"+(i+1)+"(点击可编辑)";
+                th.innerHTML = "投入" + (i+1) + "(点击可编辑)";
                 $("#head")[0].appendChild(th);
             }
             th = document.createElement("th");
-            th.innerHTML = "新Y值";
+            th.innerHTML = "新产出值";
             $("#head")[0].appendChild(th);
             //添加内容
             for (var id in table)
@@ -1213,10 +1213,10 @@ function regress() {
                     var result = 0;
                     for (var i = 0; i < values.length; i++)
                     {
-                        result += values[i] * factors[i];
+                        result += Math.log(values[i]) * factors[i];
                     }
                     result += factors[factors.length - 1];
-                    childs[childs.length-1].innerText = new Number(result).toFixed(1);
+                    childs[childs.length-1].innerText = new Number(Math.exp(result)).toFixed(1);
                 }
             });
             $("#second").css({display:"block", width: widths - 400, height: heights - 60, marginLeft: 380 + "px"});
