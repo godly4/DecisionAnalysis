@@ -107,9 +107,7 @@
                 <div class="tool-panel-content scrollbar form-group">
                     <label>年份</label>
                     <select id="aggregationYear" class="form-control">
-                        <option value="2017">2017</option>
                         <option value="2016">2016</option>
-                        <option value="2015">2015</option>
                     </select>
                     <label>图层</label>
                     <select id="resourceName" class="form-control" onchange="getResourceType(this)">
@@ -136,7 +134,7 @@
                     <hr/>
                     <button class="btn btn-success" type="button"
                             style="display: block;float: right;clear: both;margin-top: 20px;" onclick="aggregation(5)">
-                        创建
+                        现状评价
                     </button>
                 </div>
             </li>
@@ -163,7 +161,7 @@
                     </select>
                     <hr/>
                     <button class="btn btn-success" type="button"
-                            style="display: block;float: right;clear: both;margin-top: 20px;" onclick="regress()">计算
+                            style="display: block;float: right;clear: both;margin-top: 20px;" onclick="regress()">潜力评价
                     </button>
                 </div>
             </li>
@@ -204,7 +202,7 @@
                 <pre style="text-align: center; font-size: large" id="formula"></pre>
             </div>
             <div style="display: block; max-height: 800px; overflow: auto; -ms-overflow-style: -ms-autohiding-scrollbar;">
-                <table class="table table-bordered table-striped">
+                <table data-toggle="table" class="table table-bordered table-striped">
                     <thead>
                     <tr id="head"></tr>
                     </thead>
