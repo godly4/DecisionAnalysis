@@ -1157,29 +1157,26 @@ function regress() {
             th = document.createElement("th");
             th.innerHTML = "产出值";
             $("#head")[0].appendChild(th);
-            for (var i = 0; i < $("#columnX").val().length; i++)
-            {
+            for (var i = 0; i < $("#columnX").val().length; i++) {
                 th = document.createElement("th");
-                th.innerHTML = "投入" + (i+1) + "(点击可编辑)";
+                th.innerHTML = "投入" + (i + 1) + "(点击可编辑)";
                 $("#head")[0].appendChild(th);
             }
             th = document.createElement("th");
             th.innerHTML = "新产出值";
             $("#head")[0].appendChild(th);
             //添加内容
-            for (var id in table)
-            {
+            for (var id in table) {
                 var tr = document.createElement("tr");
                 var td = document.createElement("td");
                 td.innerHTML = id;
                 tr.appendChild(td);
-                for (var i = 0; i < table[id].length; i++)
-                {
+                for (var i = 0; i < table[id].length; i++) {
                     td = document.createElement("td");
                     if (i == 0)
                         td.innerHTML = table[id][i];
                     else
-                        td.innerHTML = "<a data-name='editable'>"+table[id][i]+"</a>";
+                        td.innerHTML = "<a href='#' data-pk='" + id + i + "' data-type='text' class='editable editable-click'>" + table[id][i] + "</a>";
                     tr.appendChild(td);
                 }
                 var td = document.createElement("td");
@@ -1189,38 +1186,42 @@ function regress() {
             }
             //参数
             var factors = data["betas"];
-            //计算新y值
-            $("a[data-name='editable']").editable({
-                success: function(response, newValue)
-                {
-                    var values = [];
-                    //获取tr下子节点
-                    var childs = this.parentNode.parentNode.children;
-                    //头两个是gdcode和y，最后一个是新y值
-                    for (var i = 2; i < childs.length - 1; i++)
-                    {
-                        if (childs[i] != this.parentNode)
-                        {
-                            values.push(parseFloat(childs[i].innerText.trim()));
-                        }
-                        else
-                        {
-                            values.push(parseFloat(newValue));
-                        }
-                    }
-                    //console.log(factors);
-                    //console.log(values);
-                    var result = 0;
-                    for (var i = 0; i < values.length; i++)
-                    {
-                        result += Math.log(values[i]) * factors[i];
-                    }
-                    result += factors[factors.length - 1];
-                    childs[childs.length-1].innerText = new Number(Math.exp(result)).toFixed(1);
-                }
-            });
-            $("#second").css({display:"block", width: widths - 400, height: heights - 60, marginLeft: 380 + "px"});
+            refreshEditable(factors);
+            $("#second").css({display: "block", width: widths - 400, height: heights - 60, marginLeft: 380 + "px"});
         },
+    });
+}
+
+function refreshEditable(factors)
+{
+    //计算新y值
+    $("a[class='editable editable-click']").editable({
+        type: 'text',
+        title: 'Enter value',
+        success: function (response, newValue) {
+            var values = [];
+            //获取tr下子节点
+            var childs = this.parentNode.parentNode.children;
+            //头两个是gdcode和y，最后一个是新y值
+            for (var i = 2; i < childs.length - 1; i++) {
+                if (childs[i] != this.parentNode) {
+                    values.push(parseFloat(childs[i].innerText.trim()));
+                }
+                else {
+                    values.push(parseFloat(newValue));
+                }
+            }
+            //console.log(factors);
+            //console.log(values);
+            var result = 0;
+            for (var i = 0; i < values.length; i++) {
+                result += Math.log(values[i]) * factors[i];
+            }
+            result += factors[factors.length - 1];
+            this.parentNode.innerHTML = "<a href='#' data-type='text' class='editable editable-click'>" + newValue + "</a>";
+            childs[childs.length - 1].innerText = new Number(Math.exp(result)).toFixed(1);
+            refreshEditable(factors);
+        }
     });
 }
 

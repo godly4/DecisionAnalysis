@@ -280,7 +280,6 @@ function analyze(myWindow, myData, myZoom) {
     var option = {
         title: {
             text: '现状评价',
-            subtext: '区域聚合',
             x: 'center',
             textStyle: {
                 color: '#fff'
