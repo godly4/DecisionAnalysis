@@ -1322,4 +1322,8 @@ function getActionType(that) {
         $(".calHidden").hide();
         $("#aggregationColumn").hide();
     }
+    else if (that.value == "area") {
+        $(".calHidden").hide();
+        $("#aggregationColumn").hide();
+    }
 }
