@@ -155,6 +155,8 @@
                 //collectList.collectListAjax();//ADD  20170830  收藏的列表加载
                 $(".tool-panel-container li[ac='cd']").show();
                 $("#folderBtn").show();
+                //获取协同布局数据
+                getSynergyData();
             }
         }
         me.resize();
@@ -1081,6 +1083,36 @@ function getRegressData() {
     })
 }
 
+function getSynergyData() {
+    $.ajax({
+        url: "http://114.215.68.90/synergyData",
+        beforeSend: function () {
+            var list = [];
+            list.push("companyData");
+            list.push("industryData");
+            clearChildren(list);
+        },
+        success: function (data) {
+            data = JSON.parse(data);
+            for (i = 0; i < data["company"].length; i++) {
+                node = document.createElement("option");
+                node.setAttribute("value", data["company"][i]);
+                node.innerHTML = data["company"][i];
+                $("#companyData")[0].appendChild(node.cloneNode(true));
+            }
+            for (i = 0; i < data["industry"].length; i++) {
+                node = document.createElement("option");
+                node.setAttribute("value", data["industry"][i]);
+                node.innerHTML = data["industry"][i];
+                $("#industryData")[0].appendChild(node.cloneNode(true));
+            }
+        },
+        error: function (xhr, msg) {
+            alert('获取数据类别异常：' + msg);
+        }
+    })
+}
+
 function clearChildren(list) {
     for (var i = 0; i < list.length; i++) {
         childList = document.getElementById(list[i]).children;
@@ -1118,6 +1150,66 @@ function getRegressColumn(that) {
             alert('获取数据类别异常：' + msg);
         }
     })
+}
+
+function synergy() {
+    var company = $("#companyData").val();
+    var industry = $("#industryData").val();
+    url = "http://114.215.68.90/synergyAnalysis";
+    $.ajax({
+        url: url,
+        type: "post",
+        data: {
+            "company": company,
+            "industry": industry
+        },
+        success: function (data) {
+            data = JSON.parse(data);
+            console.log(data);
+            //关闭地图
+            $("#total").hide();
+            //关闭收缩
+            $("#folderBtn").hide();
+            //展示结果
+            var obj = analysisOper.getClientSize();
+            var widths = obj.width;
+            var heights = obj.height;
+            //清空表格
+            $(".table th").remove();
+            $(".table td").remove();
+            var table = data["table"];
+            //添加表头
+            var th = document.createElement("th");
+            th.innerHTML = "地点";
+            $("#thead")[0].appendChild(th);
+            th = document.createElement("th");
+            th.innerHTML = "企业";
+            $("#thead")[0].appendChild(th);
+            th = document.createElement("th");
+            th.innerHTML = "科研机构";
+            $("#thead")[0].appendChild(th);
+            th = document.createElement("th");
+            th.innerHTML = "C值";
+            $("#thead")[0].appendChild(th);
+            th = document.createElement("th");
+            th.innerHTML = "D值";
+            $("#thead")[0].appendChild(th);
+            //添加内容
+            for (var id in table) {
+                var tr = document.createElement("tr");
+                var td = document.createElement("td");
+                td.innerHTML = id;
+                tr.appendChild(td);
+                for (var i = 0; i < table[id].length; i++) {
+                    td = document.createElement("td");
+                    td.innerHTML = table[id][i];
+                    tr.appendChild(td);
+                }
+                $("#tbody")[0].appendChild(tr);
+            }
+            $("#third").css({display: "block", width: widths - 400, height: heights - 60, marginLeft: 380 + "px"});
+        },
+    });
 }
 
 function regress() {
@@ -1192,8 +1284,7 @@ function regress() {
     });
 }
 
-function refreshEditable(factors)
-{
+function refreshEditable(factors) {
     //计算新y值
     $("a[class='editable editable-click']").editable({
         type: 'text',

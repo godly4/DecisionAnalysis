@@ -173,15 +173,23 @@
                 <!-- 工具栏容器头部 -->
                 <div class="panel-header clearfloat">
                     <img class="panel-img" src="./img/collection2.png"/>
-                    <span>收藏</span>
+                    <span>协同布局</span>
                     <img class="panel-close" src="./img/close.png"/>
                 </div>
                 <!-- 工具栏容器panel -->
-                <div class="tool-panel-content">
-                    <!-- 搜索区域 -->
-                    <div class="collectSearchConDiv"></div>
-                    <ul class="collect-list-conent"></ul>
-                    <div id="collectListPageDiv"></div>
+                <div class="tool-panel-content scrollbar form-group">
+                    <label>企业</label>
+                    <select id="companyData" class="form-control">
+                        <option value="noselect">---请选择---</option>
+                    </select>
+                    <label>科研</label>
+                    <select id="industryData" class="form-control">
+                        <option value="noselect">---请选择---</option>
+                    </select>
+                    <hr/>
+                    <button class="btn btn-success" type="button"
+                            style="display: block;float: right;clear: both;margin-top: 20px;" onclick="synergy()">协同布局
+                    </button>
                 </div>
             </li>
         </ul>
@@ -210,6 +218,23 @@
                     <tr id="head"></tr>
                     </thead>
                     <tbody id="body">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- 协同布局 -->
+    <div id="third" style="display: none">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h4>协同布局：</h4>
+            </div>
+            <div style="display: block; max-height: 800px; overflow: auto; -ms-overflow-style: -ms-autohiding-scrollbar;">
+                <table data-toggle="table" class="table table-bordered table-striped">
+                    <thead>
+                    <tr id="thead"></tr>
+                    </thead>
+                    <tbody id="tbody">
                     </tbody>
                 </table>
             </div>
