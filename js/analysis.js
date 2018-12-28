@@ -1205,10 +1205,10 @@ function synergy() {
             th.innerHTML = "科研机构";
             $("#thead")[0].appendChild(th);
             th = document.createElement("th");
-            th.innerHTML = "C值";
+            th.innerHTML = "C值(耦合度)";
             $("#thead")[0].appendChild(th);
             th = document.createElement("th");
-            th.innerHTML = "D值";
+            th.innerHTML = "D值(耦合协调度)";
             $("#thead")[0].appendChild(th);
             //添加内容
             for (var id in table) {
