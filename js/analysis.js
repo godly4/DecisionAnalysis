@@ -137,6 +137,7 @@
                 //collectList.collectClose();
                 $(".tool-panel-container li[ac='sd']").show();
                 $("#folderBtn").show();
+                $("#third").hide();
                 //me.loadData();
                 //获取回归年份数据
                 getRegressData();
@@ -155,6 +156,11 @@
                 //collectList.collectListAjax();//ADD  20170830  收藏的列表加载
                 $(".tool-panel-container li[ac='cd']").show();
                 $("#folderBtn").show();
+                $("#second").hide();
+                //清空下拉列表
+                $("#regressData option[value!=\"noselect\"]").remove();
+                $("#columnY option[value!=\"noselect\"]").remove();
+                $("#columnX option").remove();
                 //获取协同布局数据
                 getSynergyData();
             }
@@ -1223,6 +1229,7 @@ function synergy() {
                 }
                 $("#tbody")[0].appendChild(tr);
             }
+            $("#second").css({display: "none"});
             $("#third").css({display: "block", width: widths - 400, height: heights - 60, marginLeft: 380 + "px"});
         },
     });
@@ -1295,6 +1302,7 @@ function regress() {
             //参数
             var factors = data["betas"];
             refreshEditable(factors);
+            $("#third").css({display: "none"});
             $("#second").css({display: "block", width: widths - 400, height: heights - 60, marginLeft: 380 + "px"});
         },
     });
