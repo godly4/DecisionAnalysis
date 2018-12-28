@@ -1202,19 +1202,22 @@ function synergy() {
             var table = data["table"];
             //添加表头
             var th = document.createElement("th");
-            th.innerHTML = "地点";
+            th.innerHTML = "区域";
             $("#thead")[0].appendChild(th);
             th = document.createElement("th");
-            th.innerHTML = "企业";
+            th.innerHTML = "电子信息技术企业数";
             $("#thead")[0].appendChild(th);
             th = document.createElement("th");
-            th.innerHTML = "科研机构";
+            th.innerHTML = "电子信息技术研发机构";
             $("#thead")[0].appendChild(th);
             th = document.createElement("th");
             th.innerHTML = "C值(耦合度)";
             $("#thead")[0].appendChild(th);
             th = document.createElement("th");
             th.innerHTML = "D值(耦合协调度)";
+            $("#thead")[0].appendChild(th);
+            th = document.createElement("th");
+            th.innerHTML = "协调等级";
             $("#thead")[0].appendChild(th);
             //添加内容
             for (var id in table) {
