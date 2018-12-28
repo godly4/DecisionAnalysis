@@ -224,6 +224,22 @@ $(document).ready(function () {
     getResourceName();
     //编辑表格内联模式
     $.fn.editable.defaults.mode = 'inline';
+    //提交
+    $("form#formUpload").submit(function (e) {
+        e.preventDefault();
+        var formData = new FormData(this);
+        $.ajax({
+            url: "http://114.215.68.90/regressUpload",
+            type: "POST",
+            data: formData,
+            success: function (data) {
+                aggregation(data);
+            },
+            cache: false,
+            contentType: false,
+            processData: false
+        });
+    })
 });
 
 //添加数据
@@ -1317,24 +1333,20 @@ function refreshEditable(factors) {
 }
 
 function showUpload(that) {
-    if (that.value != "noselect")
-    {
+    if (that.value != "noselect") {
         $("#dataUpload").removeAttr("disabled");
     }
-    else
-    {
+    else {
         $("#dataUpload").attr("disabled", "disabled");
     }
 }
 
 function getResourceType(that) {
-    if (that.value != "noselect")
-    {
+    if (that.value != "noselect") {
         $("#curMark").removeAttr("disabled");
         $("#dataDownload").removeAttr("disabled");
     }
-    else
-    {
+    else {
         $("#curMark").attr("disabled", "disabled");
         $("#dataDownload").attr("disabled", "disabled");
         $("#dataUpload").attr("disabled", "disabled");
@@ -1373,13 +1385,16 @@ function getResourceType(that) {
     })
 }
 
-function aggregation(zoom) {
+function aggregation(value) {
     var year = $("#aggregationYear").val();
     var resource = $("#resourceName").val();
+    value = "" + value;
+    if (value.indexOf("-") >= 0)
+        resource = value;
     var type = $("#resourceType").val();
     var action = $("#action").val();
     var column = $("#aggregationColumn").val();
-    zoom = $("#zoomLevel").val();
+    var zoom = parseInt($("#zoomLevel").val());
     $.ajax({
         url: "http://114.215.68.90/aggregation",
         type: "get",

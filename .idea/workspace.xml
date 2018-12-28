@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="92575474-7f63-44e9-a151-835d58a6511d" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scripts/map/ol3Echarts/AnalysisMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/map/ol3Echarts/AnalysisMap.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/analysis.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/analysis.js" afterDir="false" />
     </list>
@@ -52,26 +51,26 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="css" value="6" />
-          <entry key="html" value="3184" />
-          <entry key="js" value="7973" />
+          <entry key="html" value="3243" />
+          <entry key="js" value="8356" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="6" />
-          <entry key="HTML" value="3184" />
-          <entry key="JavaScript" value="7973" />
+          <entry key="HTML" value="3243" />
+          <entry key="JavaScript" value="8356" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="118" column="28" lean-forward="true" selection-start-line="118" selection-start-column="28" selection-end-line="118" selection-end-column="28" />
+            <state relative-caret-position="296">
+              <caret line="153" column="40" selection-start-line="153" selection-start-column="31" selection-end-line="153" selection-end-column="40" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -110,11 +109,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/analysis.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80">
-              <caret line="1395" column="10" lean-forward="true" selection-start-line="1395" selection-start-column="10" selection-end-line="1395" selection-end-column="10" />
+            <state relative-caret-position="386">
+              <caret line="1396" column="47" lean-forward="true" selection-start-line="1396" selection-start-column="47" selection-end-line="1396" selection-end-column="47" />
               <folding>
                 <element signature="e#2207#2313#0" />
                 <element signature="e#2354#3055#0" />
@@ -138,11 +137,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>calHidden</find>
-      <find>maxV</find>
-      <find>levelArray</find>
-      <find>console.log</find>
-      <find>parseR</find>
       <find>RegressColumn</find>
       <find>toolbar</find>
       <find>total</find>
@@ -168,6 +162,11 @@
       <find>action</find>
       <find>td.innerHTML</find>
       <find>aggregation</find>
+      <find>ready</find>
+      <find>aggregat</find>
+      <find>resourceName</find>
+      <find>indexOf</find>
+      <find>zoomLevel</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -191,8 +190,8 @@
         <option value="$PROJECT_DIR$/test.html" />
         <option value="$PROJECT_DIR$/css/analysis.css" />
         <option value="$PROJECT_DIR$/sidebar.html" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/Scripts/map/ol3Echarts/AnalysisMap.js" />
+        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/js/analysis.js" />
       </list>
     </option>
@@ -354,18 +353,18 @@
       <workItem from="1545705317013" duration="10674000" />
       <workItem from="1545894121442" duration="174000" />
       <workItem from="1545909730004" duration="514000" />
-      <workItem from="1545965188375" duration="7988000" />
+      <workItem from="1545965188375" duration="11815000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="175520000" />
+    <option name="totallyTimeSpent" value="179347000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1280" y="-318" width="1920" height="1057" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16347177" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16347177" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Capture Tool" order="3" />
@@ -531,25 +530,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/analysis.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="1395" column="10" lean-forward="true" selection-start-line="1395" selection-start-column="10" selection-end-line="1395" selection-end-column="10" />
-          <folding>
-            <element signature="e#2207#2313#0" />
-            <element signature="e#2354#3055#0" />
-            <element signature="n#!!block;n#AddData#0" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#!!block;n#SaveData#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="118" column="28" lean-forward="true" selection-start-line="118" selection-start-column="28" selection-end-line="118" selection-end-column="28" />
+        <state relative-caret-position="296">
+          <caret line="153" column="40" selection-start-line="153" selection-start-column="31" selection-end-line="153" selection-end-column="40" />
           <folding>
             <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -571,6 +555,21 @@
             <element signature="n#style#0;n#pre#0;n#div#1;n#div#0;n#div#3;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#2;n#div#0;n#div#3;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#4;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/analysis.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="386">
+          <caret line="1396" column="47" lean-forward="true" selection-start-line="1396" selection-start-column="47" selection-end-line="1396" selection-end-column="47" />
+          <folding>
+            <element signature="e#2207#2313#0" />
+            <element signature="e#2354#3055#0" />
+            <element signature="n#!!block;n#AddData#0" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#!!block;n#SaveData#0" />
           </folding>
         </state>
       </provider>
