@@ -114,7 +114,7 @@
                         <option value="noselect">---请选择---</option>
                     </select>
                     <label>类别</label>
-                    <select id="resourceType" class="form-control">
+                    <select id="resourceType" class="form-control" onchange="showUpload(this)">
                         <option value="noselect">---请选择---</option>
                     </select>
                     <label>计算</label>
@@ -135,10 +135,23 @@
                         <option value="noselect">---请选择---</option>
                     </select>
                     <hr/>
-                    <button class="btn btn-success" type="button"
-                            style="display: block;float: right;clear: both;margin-top: 20px;" onclick="aggregation(5)">
+                    <button id="curMark" class="btn btn-success" type="button"
+                            style="display: block;float: left; margin-top: 20px;" onclick="aggregation(5)" disabled="disabled">
                         现状评价
                     </button>
+                    <a id="dataDownload" class="btn btn-success" type="button"
+                            style="display: block;float: right; margin-top: 20px;"
+                            href="http://114.215.68.90/DecisionAnalysis/北京市高新技术企业.csv" disabled="disabled">
+                        数据下载
+                    </a>
+                    <form method="POST" enctype="multipart/form-data" action="http://114.215.68.90/regressUpload">
+                        <div style="float:left; clear:both; margin-top: 10px" class="form-group">
+                            <input type="file" name="myfile"/>
+                            <br>
+                            <input class="btn btn-success" type="submit" value="数据审核" id="dataUpload" disabled="disabled">
+                        </div>
+                    </form>
+                    <input id="zoomLevel" type="text" value="5" hidden="hidden"/>
                 </div>
             </li>
             <!-- 潜力评价 -->

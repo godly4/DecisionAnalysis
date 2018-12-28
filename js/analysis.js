@@ -1198,7 +1198,7 @@ function synergy() {
             for (var id in table) {
                 var tr = document.createElement("tr");
                 var td = document.createElement("td");
-                td.innerHTML = id;
+                td.innerHTML = id
                 tr.appendChild(td);
                 for (var i = 0; i < table[id].length; i++) {
                     td = document.createElement("td");
@@ -1316,7 +1316,30 @@ function refreshEditable(factors) {
     });
 }
 
+function showUpload(that) {
+    if (that.value != "noselect")
+    {
+        $("#dataUpload").removeAttr("disabled");
+    }
+    else
+    {
+        $("#dataUpload").attr("disabled", "disabled");
+    }
+}
+
 function getResourceType(that) {
+    if (that.value != "noselect")
+    {
+        $("#curMark").removeAttr("disabled");
+        $("#dataDownload").removeAttr("disabled");
+    }
+    else
+    {
+        $("#curMark").attr("disabled", "disabled");
+        $("#dataDownload").attr("disabled", "disabled");
+        $("#dataUpload").attr("disabled", "disabled");
+    }
+
     $.ajax({
         url: "http://114.215.68.90/resourceType",
         type: "post",
@@ -1356,6 +1379,7 @@ function aggregation(zoom) {
     var type = $("#resourceType").val();
     var action = $("#action").val();
     var column = $("#aggregationColumn").val();
+    zoom = $("#zoomLevel").val();
     $.ajax({
         url: "http://114.215.68.90/aggregation",
         type: "get",
