@@ -336,9 +336,10 @@ function analyze(myWindow, myData, myZoom) {
     var echartslayer = new ol3Echarts(option);
 
     echartslayer.onZoomEnd = function () {
-        console.log(echartslayer.$Map.getView().getZoom());
+        //console.log(echartslayer.$Map.getView().getZoom());
         $("#zoomLevel").val(echartslayer.$Map.getView().getZoom())
-        aggregation(echartslayer.$Map.getView().getZoom());
+        console.log($("#zoomLevel").val());
+        aggregation(Math.ceil(echartslayer.$Map.getView().getZoom()));
     };
 
     echartslayer.appendTo(Maps.getMap());
