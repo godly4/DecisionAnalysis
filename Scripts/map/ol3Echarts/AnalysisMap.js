@@ -337,7 +337,7 @@ function analyze(myWindow, myData, myZoom) {
 
     echartslayer.onZoomEnd = function () {
         //console.log(echartslayer.$Map.getView().getZoom());
-        $("#zoomLevel").val(echartslayer.$Map.getView().getZoom())
+        $("#zoomLevel").val(Math.ceil(echartslayer.$Map.getView().getZoom()));
         console.log($("#zoomLevel").val());
         aggregation(Math.ceil(echartslayer.$Map.getView().getZoom()));
     };
