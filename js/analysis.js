@@ -155,6 +155,8 @@
                 $(ele).addClass('actived').siblings().removeClass('actived');
                 //collectList.collectListAjax();//ADD  20170830  收藏的列表加载
                 $(".tool-panel-container li[ac='cd']").show();
+                //打开地图
+                $("#total").show();
                 $("#folderBtn").show();
                 $("#second").hide();
                 //清空下拉列表
@@ -1188,6 +1190,12 @@ function synergy() {
         success: function (data) {
             data = JSON.parse(data);
             console.log(data);
+            //改为图形展示
+            coordinate(window, data["table"], 8);
+            $("#total").show();
+            $("#folderBtn").show();
+            $("#second").css({display: "none"});
+            /*
             //关闭地图
             $("#total").hide();
             //关闭收缩
@@ -1234,6 +1242,7 @@ function synergy() {
             }
             $("#second").css({display: "none"});
             $("#third").css({display: "block", width: widths - 400, height: heights - 60, marginLeft: 380 + "px"});
+            */
         },
     });
 }

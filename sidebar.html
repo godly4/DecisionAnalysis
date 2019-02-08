@@ -23,26 +23,75 @@
         parent.analysisOper.resize();
     });
 
-    var convertName = function (data) {
+    var convertName = function (data, type) {
         var res = [];
         if (!data)
             return res;
-        for (var i = 0; i < data.length; i++) {
-            res.push(data[i].name);
+        if (type == 1) {
+            for (var i = 0; i < data.length; i++) {
+                res.push(data[i].name);
+            }
+        }
+        else if (type == 2) {
+            for (var id in data) {
+                res.push(id);
+            }
         }
         return res;
     };
 
-    var convertValue = function (data) {
+    var convertValue = function (data, type) {
         var res = [];
         if (!data)
             return res;
-        for (var i = 0; i < data.length; i++) {
-            res.push(data[i].value);
+        if (type == 1) {
+            for (var i = 0; i < data.length; i++) {
+                res.push(data[i].value);
+            }
+        }
+        else if (type == 2) {
+            for (var id in data) {
+                res.push(data[id][3]);
+            }
         }
         return res;
     };
 
+    function fillBar(myData) {
+        $(myPie).hide();
+        $(".sidebar",parent.document).show();
+        var barOption = {
+            title: {
+                text: '协同布局',
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                }
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: {
+                type: 'value',
+                boundaryGap: [0, 0.01]
+            },
+            yAxis: {
+                type: 'category',
+                data: convertName(myData, 2)
+            },
+            series: {
+                type: 'bar',
+                data: convertValue(myData, 2)
+            }
+        };
+        // 使用刚指定的配置项和数据显示图表。
+        myBar.setOption(barOption);
+    }
 
     function fill(myData) {
         $(".sidebar",parent.document).show();
@@ -68,11 +117,11 @@
             },
             yAxis: {
                 type: 'category',
-                data: convertName(myData)
+                data: convertName(myData, 1)
             },
             series: {
                 type: 'bar',
-                data: convertValue(myData)
+                data: convertValue(myData, 1)
             }
         };
         // 使用刚指定的配置项和数据显示图表。
