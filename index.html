@@ -238,19 +238,28 @@
         </div>
     </div>
     <!-- 协同布局 -->
-    <div id="third" style="display: none">
-        <div class="panel panel-info">
-            <div class="panel-heading">
-                <h4>协同布局：</h4>
-            </div>
-            <div style="display: block; max-height: 800px; overflow: auto; -ms-overflow-style: -ms-autohiding-scrollbar;">
-                <table data-toggle="table" class="table table-bordered table-striped">
-                    <thead>
-                    <tr id="thead"></tr>
-                    </thead>
-                    <tbody id="tbody">
-                    </tbody>
-                </table>
+    <!-- Modal -->
+    <div class="modal fade" id="third" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">数据表</h4>
+                </div>
+                <div class="modal-body">
+                    <div style="display: block; max-height: 800px; overflow: auto; -ms-overflow-style: -ms-autohiding-scrollbar;">
+                        <table data-toggle="table" class="table table-bordered table-striped">
+                            <thead>
+                            <tr id="thead"></tr>
+                            </thead>
+                            <tbody id="tbody">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>

@@ -1204,6 +1204,7 @@ function synergy() {
             var obj = analysisOper.getClientSize();
             var widths = obj.width;
             var heights = obj.height;
+            */
             //清空表格
             $(".table th").remove();
             $(".table td").remove();
@@ -1240,6 +1241,8 @@ function synergy() {
                 }
                 $("#tbody")[0].appendChild(tr);
             }
+            $("#third").modal('show');
+            /*
             $("#second").css({display: "none"});
             $("#third").css({display: "block", width: widths - 400, height: heights - 60, marginLeft: 380 + "px"});
             */
