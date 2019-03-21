@@ -102,6 +102,8 @@
                 <div class="panel-header clearfloat">
                     <img class="panel-img" src="./img/collection2.png"/>
                     <span>区域聚合</span>
+                    <i class="icon-info-sign" style="position: initial" data-toggle="tooltip"
+                       title="评价京津冀科技资源时空现状,产生科技资源现状评价结果"></i>
                     <img class="panel-close" ac="do" src="./img/close.png"/>
                 </div>
                 <!-- 工具栏容器panel 年份－图层－类别－计算-->
@@ -137,19 +139,21 @@
                     </select>
                     <hr/>
                     <button id="curMark" class="btn btn-success" type="button"
-                            style="display: block;float: left; margin-top: 20px;" onclick="aggregation(5)" disabled="disabled">
+                            style="display: block;float: left; margin-top: 20px;" onclick="aggregation(5)"
+                            disabled="disabled">
                         现状评价
                     </button>
                     <a id="dataDownload" class="btn btn-success" type="button"
-                            style="display: block;float: right; margin-top: 20px;"
-                            href="http://114.215.68.90/DecisionAnalysis/北京市高新技术企业.csv" disabled="disabled">
+                       style="display: block;float: right; margin-top: 20px;"
+                       href="http://114.215.68.90/DecisionAnalysis/北京市高新技术企业.csv" disabled="disabled">
                         数据下载
                     </a>
                     <form method="POST" enctype="multipart/form-data" id="formUpload">
                         <div style="float:left; clear:both; margin-top: 10px" class="form-group">
                             <input type="file" name="myfile"/>
                             <br>
-                            <input class="btn btn-success" type="submit" value="数据审核" id="dataUpload" disabled="disabled">
+                            <input class="btn btn-success" type="submit" value="数据审核" id="dataUpload"
+                                   disabled="disabled">
                         </div>
                     </form>
                     <input id="zoomLevel" type="text" value="5" hidden="hidden"/>
@@ -161,6 +165,8 @@
                 <div class="panel-header clearfloat">
                     <img class="panel-img" src="./img/collection2.png"/>
                     <span>数据</span>
+                    <i class="icon-info-sign" style="position: initial" data-toggle="tooltip"
+                       title="通过输入不同区域各类科技资源投入数据和产出数据，基于科技资源投入产出模型算法，输出科技资源潜力预测结果"></i>
                     <img class="panel-close" ac="do" src="./img/close.png"/>
                 </div>
                 <!-- 工具栏容器panel -->
@@ -188,6 +194,8 @@
                 <div class="panel-header clearfloat">
                     <img class="panel-img" src="./img/collection2.png"/>
                     <span>协同布局</span>
+                    <i class="icon-info-sign" style="position: initial" data-toggle="tooltip"
+                       title="基于科技资源协同布局评价模型算法，测算京津冀不同区域的科技资源与产业发展的匹配度，输出产业配置和科技资源之间的协同布局时空特征评价结果，为战略决策提供参考依据和支持"></i>
                     <img class="panel-close" src="./img/close.png"/>
                 </div>
                 <!-- 工具栏容器panel -->
@@ -243,7 +251,8 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="myModalLabel">数据表</h4>
                 </div>
                 <div class="modal-body">
