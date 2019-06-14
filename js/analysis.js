@@ -1358,6 +1358,23 @@ function refreshEditable(factors) {
 function showUpload(that) {
     if (that.value != "noselect") {
         $("#dataUpload").removeAttr("disabled");
+        var list = [];
+        list.push("aggregationColumn");
+        clearChildren(list);
+        //填充属性
+        $.ajax({
+            url: "http://117.121.38.154:8886/Type/GetResourceAttribute?datatypes="+that.value+"&ak=1198F11ACAA27F45E83C7E246792B1D6FAB9E10D7F067609",
+            type: "get",
+            success: function(data) {
+                attrs = JSON.parse(data["results"]);
+                for (i = 0; i < attrs.length; i++) {
+                    node = document.createElement("option");
+                    node.setAttribute("value", attrs[i]["attributecode"]);
+                    node.innerHTML = attrs[i]["attributename"];
+                    $("#aggregationColumn")[0].appendChild(node.cloneNode(true));
+                }
+            }
+        });
     }
     else {
         $("#dataUpload").attr("disabled", "disabled");
@@ -1376,9 +1393,8 @@ function getResourceType(that) {
     }
 
     $.ajax({
-        url: "http://114.215.68.90/resourceType",
-        type: "post",
-        data: {"name": that.value},
+        url: "http://117.121.38.154:8886/Type/GetResourceType?ak=1198F11ACAA27F45E83C7E246792B1D6FAB9E10D7F067609",
+        type: "get",
         beforeSend: function () {
             var list = [];
             list.push("resourceType");
@@ -1386,21 +1402,30 @@ function getResourceType(that) {
             clearChildren(list);
         },
         success: function (data) {
-            data = JSON.parse(data);
-            statList = data.statList;
-            typeList = data.typeList;
-            for (i = 0; i < typeList.length; i++) {
-                node = document.createElement("option");
-                node.setAttribute("value", typeList[i]);
-                node.innerHTML = typeList[i];
-                $("#resourceType")[0].appendChild(node.cloneNode(true));
+            results = JSON.parse(data["results"]);
+            var types;
+            //匹配图层
+            for (i = 0; i < results.length; i++) {
+                if (results[i]["code"] == that.value) {
+                    types = results[i]["affiliatedtype"];
+                }
             }
+            for (i = 0; i < types.length; i++) {
+                //填充类别
+                node = document.createElement("option");
+                node.setAttribute("value", types[i]["affiliatedcode"]);
+                node.innerHTML = types[i]["affiliatedname"];
+                $("#resourceType")[0].appendChild(node.cloneNode(true));
+
+            }
+            /*
             for (i = 0; i < statList.length; i++) {
                 node = document.createElement("option");
                 node.setAttribute("value", statList[i]);
                 node.innerHTML = statList[i];
                 $("#aggregationColumn")[0].appendChild(node.cloneNode(true));
             }
+            */
         },
         error: function (xhr, msg) {
             alert('获取资源类别异常：' + msg);
@@ -1445,14 +1470,16 @@ function aggregation(value) {
 
 function getResourceName() {
     $.ajax({
-        url: "http://114.215.68.90/resourceList",
+        url: "http://117.121.38.154:8886/Type/GetResourceType?ak=1198F11ACAA27F45E83C7E246792B1D6FAB9E10D7F067609",
         type: "get",
         success: function (data) {
-            data = JSON.parse(data);
-            for (i = 0; i < data.length; i++) {
+            //填充图层属性
+            results = JSON.parse(data["results"]);
+            for (i = 0; i < results.length; i++) {
                 node = document.createElement("option");
-                node.setAttribute("value", data[i]);
-                node.innerHTML = data[i];
+                console.log(results[i]);
+                node.setAttribute("value", results[i]["code"]);
+                node.innerHTML = results[i]["name"];
                 $("#resourceName")[0].appendChild(node.cloneNode(true));
             }
         },
